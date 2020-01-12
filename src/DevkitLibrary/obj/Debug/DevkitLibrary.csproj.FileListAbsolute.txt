@@ -1,0 +1,7 @@
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csprojAssemblyReference.cache
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary\bin\Debug\DevkitLibrary.dll
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary\bin\Debug\DevkitLibrary.pdb
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary\bin\Debug\ps3tmapi_net.dll
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.CopyComplete
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.dll
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.pdb
