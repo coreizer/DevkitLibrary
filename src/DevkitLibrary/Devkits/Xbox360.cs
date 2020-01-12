@@ -25,9 +25,6 @@ namespace DevkitLibrary.Devkits
 {
 	public class Xbox360 : IDevkit
 	{
-		private const string NAME = "coreizer_xdevkit";
-		private const string GUID = "A5EB45D8-F3B6-49B9-984A-0D313AB60342";
-
 		internal class Params
 		{
 			public static string UserName;
@@ -36,126 +33,164 @@ namespace DevkitLibrary.Devkits
 			public static string DebuggerName;
 		}
 
-		[NotSupported]
-		public int TargetIndex {
-			get {
-				return int.MinValue;
-			}
-		}
+		private const string NAME = "coreizer_xdevkit";
+		private const string GUID = "A5EB45D8-F3B6-49B9-984A-0D313AB60342";
+
+		public int TargetIndex => throw new NotImplementedException();
 
 		public ConnectState ConnectState {
 			get;
 			private set;
 		}
 
-		public async Task<ConnectState> ConnectTarget()
+		public ConnectState Connect()
 		{
-			return await Task.Run(() =>
-			{
-				this.ConnectState = ConnectState.Unavailable;
+			this.ConnectState = ConnectState.Unavailable;
 
-				if (Params.XboxManager != null)
+			if (Params.XboxManager != null)
+			{
+				this.ConnectState = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
+					ConnectState.Connected : ConnectState.Disconnected;
+			}
+			else
+			{
+				Guid clsid = new Guid(GUID);
+				Params.XboxManager = (XboxManager)Activator.CreateInstance(Type.GetTypeFromCLSID(clsid));
+				Params.XboxConsole = Params.XboxManager.OpenConsole(Params.XboxManager.DefaultConsole);
+
+				if (Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName))
 				{
+					Params.XboxConsole.DebugTarget.ConnectAsDebugger(NAME, XboxDebugConnectFlags.Force);
 					this.ConnectState = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
 						ConnectState.Connected : ConnectState.Disconnected;
 				}
-				else
-				{
-					Guid clsid = new Guid(GUID);
-					Params.XboxManager = (XboxManager)Activator.CreateInstance(Type.GetTypeFromCLSID(clsid));
-					Params.XboxConsole = Params.XboxManager.OpenConsole(Params.XboxManager.DefaultConsole);
+			}
 
-					if (Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName))
-					{
-						Params.XboxConsole.DebugTarget.ConnectAsDebugger(NAME, XboxDebugConnectFlags.Force);
-						this.ConnectState = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
-							ConnectState.Connected : ConnectState.Disconnected;
-					}
-				}
-
-				return this.ConnectState;
-			});
+			return this.ConnectState;
 		}
 
-		public async Task<bool> DisconnectTarget()
+		public async Task<ConnectState> ConnectAsync()
 		{
-			return await Task.Run(() =>
-			{
-				if (this.ConnectState != ConnectState.Connected) return false;
-
-				try
-				{
-					Params.XboxConsole.DebugTarget.DisconnectAsDebugger();
-				}
-				catch
-				{
-					return false;
-				}
-
-				return true;
-			});
+			return await Task.Run(() => this.Connect());
 		}
 
-		public async Task<ConnectState> GetConnectState()
+		public bool Disconnect()
 		{
-			return await Task.Run(() =>
-			{
-				if (this.ConnectState != ConnectState.Connected) return ConnectState.Unavailable;
+			if (this.ConnectState != ConnectState.Connected) return false;
 
-				return Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
-						ConnectState.Connected : ConnectState.Disconnected;
-			});
+			try
+			{
+				Params.XboxConsole.DebugTarget.DisconnectAsDebugger();
+			}
+			catch
+			{
+				return false;
+			}
+
+			return true;
 		}
 
-		public async Task<byte[]> GetMemory(uint address, uint length)
+		public async Task<bool> DisconnectAsync()
 		{
-			return await Task.Run(() =>
-			{
-				if (this.ConnectState != ConnectState.Connected) return new byte[0];
+			return await Task.Run(() => this.Disconnect());
+		}
 
-				byte[] bytes = new byte[length];
-				Params.XboxConsole.DebugTarget.GetMemory(address, length, bytes, out uint bytesRead);
-				return bytes;
-			});
+		public ConnectState GetConnectState()
+		{
+			if (this.ConnectState != ConnectState.Connected) return ConnectState.Unavailable;
+
+			return Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
+					ConnectState.Connected : ConnectState.Disconnected;
+		}
+
+		public async Task<ConnectState> GetConnectStateAsync()
+		{
+			return await Task.Run(() => this.GetConnectState());
+		}
+
+		public byte[] GetMemory(uint address, uint length)
+		{
+			if (this.ConnectState != ConnectState.Connected) return new byte[0];
+
+			byte[] bytes = new byte[length];
+			Params.XboxConsole.DebugTarget.GetMemory(address, length, bytes, out uint bytesRead);
+			return bytes;
+		}
+
+		public async Task<byte[]> GetMemoryAsync(uint address, uint length)
+		{
+			return await Task.Run(() => this.GetMemory(address, length));
+		}
+
+		public bool SetMemory(uint address, byte[] bytes)
+		{
+			if (this.ConnectState != ConnectState.Connected) return false;
+
+			Params.XboxConsole.DebugTarget.SetMemory(address, (uint)bytes.Length, bytes, out uint bytesWritten);
+			return true;
+		}
+
+		public async Task<bool> SetMemoryAsync(uint address, byte[] bytes)
+		{
+			return await Task.Run(() => this.SetMemory(address, bytes));
 		}
 
 		/// <summary>
-		/// Not Supported
+		/// Not Supported.
 		/// </summary>
 		/// <returns>NotImplementedException</returns>
 		[NotSupported]
-		public Task<PowerState> GetPowerState()
+		public PowerState GetPowerState()
 		{
 			throw new NotImplementedException();
 		}
 
 		/// <summary>
-		/// Not Supported
+		/// Not Supported.
 		/// </summary>
 		/// <returns>NotImplementedException</returns>
 		[NotSupported]
-		public Task<bool> ProcessAttach()
+		public Task<PowerState> GetPowerStateAsync()
 		{
 			throw new NotImplementedException();
 		}
 
-		public async Task<bool> SetMemory(uint address, byte[] bytes)
-		{
-			return await Task.Run(() =>
-			{
-				if (this.ConnectState != ConnectState.Connected) return false;
-
-				Params.XboxConsole.DebugTarget.SetMemory(address, (uint)bytes.Length, bytes, out uint bytesWritten);
-				return true;
-			});
-		}
-
 		/// <summary>
-		/// Not Supported
+		/// Not Supported.
 		/// </summary>
 		/// <returns>NotImplementedException</returns>
 		[NotSupported]
-		public Task<bool> SetPowerState(PowerState state, bool isForce = false)
+		public bool ProcessAttach()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Not Supported.
+		/// </summary>
+		/// <returns>NotImplementedException</returns>
+		[NotSupported]
+		public Task<bool> ProcessAttachAsync()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Not Supported.
+		/// </summary>
+		/// <returns>NotImplementedException</returns>
+		[NotSupported]
+		public bool SetPowerState(PowerState state, bool isForce = false)
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Not Supported.
+		/// </summary>
+		/// <returns>NotImplementedException</returns>
+		[NotSupported]
+		public Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false)
 		{
 			throw new NotImplementedException();
 		}

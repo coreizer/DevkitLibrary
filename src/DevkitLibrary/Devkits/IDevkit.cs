@@ -27,20 +27,36 @@ namespace DevkitLibrary.Devkits
 
 		ConnectState ConnectState { get; }
 
-		Task<ConnectState> ConnectTarget();
+    ConnectState Connect();
 
-		Task<bool> DisconnectTarget();
+    Task<ConnectState> ConnectAsync();
 
-		Task<bool> ProcessAttach();
+    bool Disconnect();
 
-		Task<bool> SetMemory(uint address, byte[] bytes);
+    Task<bool> DisconnectAsync();
 
-		Task<byte[]> GetMemory(uint address, uint length);
+    bool ProcessAttach();
 
-		Task<bool> SetPowerState(PowerState state, bool isForce = false);
+    Task<bool> ProcessAttachAsync();
 
-		Task<PowerState> GetPowerState();
+    bool SetMemory(uint address, byte[] bytes);
 
-		Task<ConnectState> GetConnectState();
+    Task<bool> SetMemoryAsync(uint address, byte[] bytes);
+
+    byte[] GetMemory(uint address, uint length);
+
+    Task<byte[]> GetMemoryAsync(uint address, uint length);
+
+    bool SetPowerState(PowerState state, bool isForce = false);
+
+    Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false);
+
+    PowerState GetPowerState();
+
+    Task<PowerState> GetPowerStateAsync();
+
+		ConnectState GetConnectState();
+		
+    Task<ConnectState> GetConnectStateAsync();
 	}
 }

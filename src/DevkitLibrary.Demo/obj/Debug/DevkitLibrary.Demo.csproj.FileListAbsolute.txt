@@ -11,3 +11,16 @@ D:\Working Project\Visual Studio 2019\DevkitLibrary\DevkitLibrary.Demo\bin\Debug
 D:\Working Project\Visual Studio 2019\DevkitLibrary\DevkitLibrary.Demo\bin\Debug\PS3TMAPI_NET.dll
 D:\Working Project\Visual Studio 2019\DevkitLibrary\DevkitLibrary.Demo\bin\Debug\DevkitLibrary.pdb
 D:\Working Project\Visual Studio 2019\DevkitLibrary\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.CopyComplete
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\DevkitLibrary.Demo.exe.config
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\DevkitLibrary.Demo.exe
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\DevkitLibrary.Demo.pdb
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\DevkitLibrary.dll
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\PS3TMAPI_NET.dll
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\DevkitLibrary.pdb
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csprojAssemblyReference.cache
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.Main.resources
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.Properties.Resources.resources
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.GenerateResource.cache
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.CopyComplete
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.exe
+D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.pdb

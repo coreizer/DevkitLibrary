@@ -39,19 +39,23 @@ namespace DevkitLibrary.Demo
 
 			try
 			{
-				ConnectState state = await this.devkit.ConnectTarget();
+				ConnectState state = await this.devkit.ConnectTargetAsync();
 
 				switch (state)
 				{
 					case ConnectState.Connected:
 					{
 						if (this.devkit.DevkitTarget == DevkitTarget.PS3) this.buttonProcessAttach.Enabled = true;
+
+						this.buttonConnect.Enabled = false;
+						this.buttonConnect.Text = "Connected";
 						MessageBox.Show("Connect to Target", "Devkit", MessageBoxButtons.OK, MessageBoxIcon.Information);
 						break;
 					}
 
 					default:
 					{
+						this.buttonConnect.Enabled = true;
 						MessageBox.Show("Connection error", "Devkit", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 						break;
 					}
@@ -60,11 +64,11 @@ namespace DevkitLibrary.Demo
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				this.buttonConnect.Enabled = true;
 			}
 			finally
 			{
 				this.comboBoxDevkit.Enabled = true;
-				this.buttonConnect.Enabled = true;
 			}
 		}
 
@@ -92,8 +96,16 @@ namespace DevkitLibrary.Demo
 		{
 			try
 			{
-				this.buttonProcessAttach.Enabled = true;
-				await this.devkit.ProcessAttach();
+				this.buttonProcessAttach.Enabled = false;
+				bool result = await this.devkit.ProcessAttachAsync();
+				if (result)
+				{
+					MessageBox.Show("Current game process is attached successfully !", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				else
+				{
+					MessageBox.Show("No game process found", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
 			}
 			catch(Exception ex)
 			{
@@ -101,7 +113,7 @@ namespace DevkitLibrary.Demo
 			}
 			finally
 			{
-				this.buttonProcessAttach.Enabled = false;
+				this.buttonProcessAttach.Enabled = true;
 			}
 		}
 	}

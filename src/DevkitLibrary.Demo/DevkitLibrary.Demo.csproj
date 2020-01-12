@@ -80,7 +80,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\DevkitLibrary\DevkitLibrary.csproj">
+    <ProjectReference Include="..\DevkitLibrary\DevkitLibrary.csproj">
       <Project>{b3bdcf83-eaee-4fc2-bf95-17785fa8fa43}</Project>
       <Name>DevkitLibrary</Name>
     </ProjectReference>

@@ -89,7 +89,7 @@
 			this.MaximizeBox = false;
 			this.Name = "Main";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Devkit Lib by coreizer v0.1";
+			this.Text = "Devkit Lib by coreizer v0.2";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
