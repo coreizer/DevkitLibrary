@@ -22,7 +22,6 @@ using DevkitLibrary.Enums;
 
 namespace DevkitLibrary.Devkits
 {
-
 	public class PS3 : IDevkit
 	{
 		internal class Params
@@ -30,12 +29,6 @@ namespace DevkitLibrary.Devkits
 			public static string usage;
 			public static uint processID;
 			public static uint[] processIDs;
-
-			public static uint GetProcessID()
-			{
-				return (processIDs != null && processIDs.Length > 0) ?
-					Convert.ToUInt32(processIDs[0]) : 0;
-			}
 		}
 
 		private const PS3TMAPI.UnitType UNIT = PS3TMAPI.UnitType.PPU;
@@ -70,6 +63,10 @@ namespace DevkitLibrary.Devkits
 
 		public async Task<ConnectState> ConnectAsync()
 		{
+			PS3TMAPI.SNRESULT result = PS3TMAPI.InitTargetComms();
+			if (PS3TMAPI.FAILED(result))
+				return this.ConnectState = ConnectState.Unavailable;
+
 			return await Task.Run(() => this.Connect());
 		}
 
@@ -107,7 +104,7 @@ namespace DevkitLibrary.Devkits
 
 		public byte[] GetMemory(uint address, uint length)
 		{
-			if (this.ConnectState != ConnectState.Connected) return new byte[0];
+			if (this.ConnectState != ConnectState.Connected) return null;
 
 			byte[] bytes = new byte[length];
 			PS3TMAPI.SNRESULT result = PS3TMAPI.ProcessGetMemory(this.TargetIndex, UNIT, Params.processID, 0, address, ref bytes);
@@ -116,7 +113,7 @@ namespace DevkitLibrary.Devkits
 				return bytes;
 			}
 
-			return new byte[0];
+			return null;
 		}
 
 		public async Task<byte[]> GetMemoryAsync(uint address, uint length)
@@ -150,7 +147,7 @@ namespace DevkitLibrary.Devkits
 			PS3TMAPI.SNRESULT result = PS3TMAPI.GetProcessList(this.TargetIndex, out Params.processIDs);
 			if (PS3TMAPI.SUCCEEDED(result) && Params.processIDs.Length > 0)
 			{
-				Params.processID = Params.GetProcessID();
+				Params.processID = Convert.ToUInt32(Params.processIDs[0]);
 				PS3TMAPI.ProcessAttach(this.TargetIndex, UNIT, Params.processID);
 
 				return PS3TMAPI.SUCCEEDED(PS3TMAPI.ProcessContinue(this.TargetIndex, Params.processID));
@@ -199,6 +196,13 @@ namespace DevkitLibrary.Devkits
 		public async Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false)
 		{
 			return await Task.Run(() => this.SetPowerState(state, isForce));
+		}
+
+		public string ProcessInfo()
+		{
+			if (this.ConnectState != ConnectState.Connected) return "";
+
+			return Params.processID.ToString("X8");
 		}
 	}
 }

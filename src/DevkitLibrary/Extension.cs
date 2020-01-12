@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Linq;
 using System.Text;
 
 using DevkitLibrary.Devkits;
@@ -123,17 +124,17 @@ namespace DevkitLibrary
 		public string ReadString(uint address)
 		{
 			uint index = 0;
-			uint readSize = 40;
+			uint blocksize = 40;
 			string text = "";
 
-			while (!text.Contains("\0"))
+			while (!text.Contains('\0'))
 			{
-				byte[] bytes = this.devkit.GetMemory(address + (uint)index, readSize);
+				byte[] bytes = this.devkit.GetMemory(address + (uint)index, blocksize);
 				text += Encoding.UTF8.GetString(bytes);
-				index += readSize;
+				index += blocksize;
 			}
 
-			return text.Substring(0, text.IndexOf("\0"));
+			return text.Substring(0, text.IndexOf('\0'));
 		}
 
 		public string ReadString(uint address, int length)
