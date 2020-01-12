@@ -157,16 +157,6 @@ namespace DevkitLibrary.Devkits
 			}
 
 			return false;
-
-			//PS3TMAPI.SNRESULT result = PS3TMAPI.GetProcessList(this.TargetIndex, out Params.processIDs);
-			//if (PS3TMAPI.SUCCEEDED(result) && Params.processIDs.Length > 0)
-			//{
-			//	Params.processID = Params.GetProcessID();
-			//	PS3TMAPI.ProcessAttach(this.TargetIndex, UNIT, Params.processID);
-			//	result = PS3TMAPI.ProcessContinue(this.TargetIndex, Params.processID);
-			//}
-
-			//return PS3TMAPI.SUCCEEDED(result);
 		}
 
 		public async Task<bool> ProcessAttachAsync()
