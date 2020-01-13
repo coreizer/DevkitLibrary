@@ -17,9 +17,9 @@
 
 namespace DevkitLibrary.Enums
 {
-	public enum Endian
-	{
-		Big,
-		Little,
-	}
+  public enum Endian
+  {
+    Big,
+    Little,
+  }
 }

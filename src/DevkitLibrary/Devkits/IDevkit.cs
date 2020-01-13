@@ -21,11 +21,11 @@ using DevkitLibrary.Enums;
 
 namespace DevkitLibrary.Devkits
 {
-	public interface IDevkit
-	{
-		int TargetIndex { get; }
+  public interface IDevkit
+  {
+    int TargetIndex { get; }
 
-		ConnectState ConnectState { get; }
+    ConnectState ConnectState { get; }
 
     ConnectState Connect();
 
@@ -55,8 +55,8 @@ namespace DevkitLibrary.Devkits
 
     Task<PowerState> GetPowerStateAsync();
 
-		ConnectState GetConnectState();
-		
+    ConnectState GetConnectState();
+
     Task<ConnectState> GetConnectStateAsync();
-	}
+  }
 }

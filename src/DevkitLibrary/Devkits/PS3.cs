@@ -22,187 +22,187 @@ using DevkitLibrary.Enums;
 
 namespace DevkitLibrary.Devkits
 {
-	public class PS3 : IDevkit
-	{
-		internal class Params
-		{
-			public static string usage;
-			public static uint processID;
-			public static uint[] processIDs;
-		}
+  public class PS3 : IDevkit
+  {
+    internal class Params
+    {
+      public static string usage;
+      public static uint processID;
+      public static uint[] processIDs;
+    }
 
-		private const PS3TMAPI.UnitType UNIT = PS3TMAPI.UnitType.PPU;
+    private const PS3TMAPI.UnitType UNIT = PS3TMAPI.UnitType.PPU;
 
-		public int TargetIndex {
-			get;
-		}
+    public int TargetIndex {
+      get;
+    }
 
-		public ConnectState ConnectState {
-			get;
-			set;
-		}
+    public ConnectState ConnectState {
+      get;
+      set;
+    }
 
-		public PS3(int targetIndex)
-		{
-			this.TargetIndex = targetIndex;
-			this.ConnectState = ConnectState.Disconnected;
-		}
+    public PS3(int targetIndex)
+    {
+      this.TargetIndex = targetIndex;
+      this.ConnectState = ConnectState.Disconnected;
+    }
 
-		public ConnectState Connect()
-		{
-			PS3TMAPI.SNRESULT result = PS3TMAPI.InitTargetComms();
-			if (PS3TMAPI.FAILED(result))
-				return this.ConnectState = ConnectState.Unavailable;
+    public ConnectState Connect()
+    {
+      PS3TMAPI.SNRESULT result = PS3TMAPI.InitTargetComms();
+      if (PS3TMAPI.FAILED(result))
+        return this.ConnectState = ConnectState.Unavailable;
 
-			result = PS3TMAPI.Connect(this.TargetIndex, null);
-			if (PS3TMAPI.SUCCEEDED(result))
-				return this.ConnectState = ConnectState.Connected;
+      result = PS3TMAPI.Connect(this.TargetIndex, null);
+      if (PS3TMAPI.SUCCEEDED(result))
+        return this.ConnectState = ConnectState.Connected;
 
-			return this.ConnectState = ConnectState.Unavailable;
-		}
+      return this.ConnectState = ConnectState.Unavailable;
+    }
 
-		public async Task<ConnectState> ConnectAsync()
-		{
-			PS3TMAPI.SNRESULT result = PS3TMAPI.InitTargetComms();
-			if (PS3TMAPI.FAILED(result))
-				return this.ConnectState = ConnectState.Unavailable;
+    public async Task<ConnectState> ConnectAsync()
+    {
+      PS3TMAPI.SNRESULT result = PS3TMAPI.InitTargetComms();
+      if (PS3TMAPI.FAILED(result))
+        return this.ConnectState = ConnectState.Unavailable;
 
-			return await Task.Run(() => this.Connect());
-		}
+      return await Task.Run(() => this.Connect());
+    }
 
-		public bool Disconnect()
-		{
-			if (this.ConnectState != ConnectState.Connected) return false;
+    public bool Disconnect()
+    {
+      if (this.ConnectState != ConnectState.Connected) return false;
 
-			return PS3TMAPI.SUCCEEDED(PS3TMAPI.Disconnect(this.TargetIndex));
-		}
+      return PS3TMAPI.SUCCEEDED(PS3TMAPI.Disconnect(this.TargetIndex));
+    }
 
-		public async Task<bool> DisconnectAsync()
-		{
-			return await Task.Run(() => this.Disconnect());
-		}
+    public async Task<bool> DisconnectAsync()
+    {
+      return await Task.Run(() => this.Disconnect());
+    }
 
-		public ConnectState GetConnectState()
-		{
-			if (this.ConnectState != ConnectState.Connected) return ConnectState.Unavailable;
+    public ConnectState GetConnectState()
+    {
+      if (this.ConnectState != ConnectState.Connected) return ConnectState.Unavailable;
 
-			PS3TMAPI.ConnectStatus status = PS3TMAPI.ConnectStatus.Unavailable;
-			PS3TMAPI.SNRESULT result = PS3TMAPI.GetConnectStatus(this.TargetIndex, out status, out Params.usage);
+      PS3TMAPI.ConnectStatus status = PS3TMAPI.ConnectStatus.Unavailable;
+      PS3TMAPI.SNRESULT result = PS3TMAPI.GetConnectStatus(this.TargetIndex, out status, out Params.usage);
 
-			if (PS3TMAPI.SUCCEEDED(result))
-			{
-				return (ConnectState)status;
-			}
+      if (PS3TMAPI.SUCCEEDED(result))
+      {
+        return (ConnectState)status;
+      }
 
-			return ConnectState.Unavailable;
-		}
+      return ConnectState.Unavailable;
+    }
 
-		public async Task<ConnectState> GetConnectStateAsync()
-		{
-			return await Task.Run(() => this.GetConnectState());
-		}
+    public async Task<ConnectState> GetConnectStateAsync()
+    {
+      return await Task.Run(() => this.GetConnectState());
+    }
 
-		public byte[] GetMemory(uint address, uint length)
-		{
-			if (this.ConnectState != ConnectState.Connected) return null;
+    public byte[] GetMemory(uint address, uint length)
+    {
+      if (this.ConnectState != ConnectState.Connected) return null;
 
-			byte[] bytes = new byte[length];
-			PS3TMAPI.SNRESULT result = PS3TMAPI.ProcessGetMemory(this.TargetIndex, UNIT, Params.processID, 0, address, ref bytes);
-			if (PS3TMAPI.SUCCEEDED(result))
-			{
-				return bytes;
-			}
+      byte[] bytes = new byte[length];
+      PS3TMAPI.SNRESULT result = PS3TMAPI.ProcessGetMemory(this.TargetIndex, UNIT, Params.processID, 0, address, ref bytes);
+      if (PS3TMAPI.SUCCEEDED(result))
+      {
+        return bytes;
+      }
 
-			return null;
-		}
+      return null;
+    }
 
-		public async Task<byte[]> GetMemoryAsync(uint address, uint length)
-		{
-			return await Task.Run(() => this.GetMemory(address, length));
-		}
+    public async Task<byte[]> GetMemoryAsync(uint address, uint length)
+    {
+      return await Task.Run(() => this.GetMemory(address, length));
+    }
 
-		public PowerState GetPowerState()
-		{
-			if (this.ConnectState != ConnectState.Connected) return PowerState.Unknown;
+    public PowerState GetPowerState()
+    {
+      if (this.ConnectState != ConnectState.Connected) return PowerState.Unknown;
 
-			PS3TMAPI.PowerStatus status = PS3TMAPI.PowerStatus.Unknown;
-			PS3TMAPI.SNRESULT result = PS3TMAPI.GetPowerStatus(this.TargetIndex, out status);
-			if (PS3TMAPI.SUCCEEDED(result))
-			{
-				return (PowerState)status;
-			}
+      PS3TMAPI.PowerStatus status = PS3TMAPI.PowerStatus.Unknown;
+      PS3TMAPI.SNRESULT result = PS3TMAPI.GetPowerStatus(this.TargetIndex, out status);
+      if (PS3TMAPI.SUCCEEDED(result))
+      {
+        return (PowerState)status;
+      }
 
-			return PowerState.Unknown;
-		}
+      return PowerState.Unknown;
+    }
 
-		public async Task<PowerState> GetPowerStateAsync()
-		{
-			return await Task.Run(() => this.GetPowerState());
-		}
+    public async Task<PowerState> GetPowerStateAsync()
+    {
+      return await Task.Run(() => this.GetPowerState());
+    }
 
-		public bool ProcessAttach()
-		{
-			if (this.ConnectState != ConnectState.Connected) return false;
+    public bool ProcessAttach()
+    {
+      if (this.ConnectState != ConnectState.Connected) return false;
 
-			PS3TMAPI.SNRESULT result = PS3TMAPI.GetProcessList(this.TargetIndex, out Params.processIDs);
-			if (PS3TMAPI.SUCCEEDED(result) && Params.processIDs.Length > 0)
-			{
-				Params.processID = Convert.ToUInt32(Params.processIDs[0]);
-				PS3TMAPI.ProcessAttach(this.TargetIndex, UNIT, Params.processID);
+      PS3TMAPI.SNRESULT result = PS3TMAPI.GetProcessList(this.TargetIndex, out Params.processIDs);
+      if (PS3TMAPI.SUCCEEDED(result) && Params.processIDs.Length > 0)
+      {
+        Params.processID = Convert.ToUInt32(Params.processIDs[0]);
+        PS3TMAPI.ProcessAttach(this.TargetIndex, UNIT, Params.processID);
 
-				return PS3TMAPI.SUCCEEDED(PS3TMAPI.ProcessContinue(this.TargetIndex, Params.processID));
-			}
+        return PS3TMAPI.SUCCEEDED(PS3TMAPI.ProcessContinue(this.TargetIndex, Params.processID));
+      }
 
-			return false;
-		}
+      return false;
+    }
 
-		public async Task<bool> ProcessAttachAsync()
-		{
-			return await Task.Run(() => this.ProcessAttach());
-		}
+    public async Task<bool> ProcessAttachAsync()
+    {
+      return await Task.Run(() => this.ProcessAttach());
+    }
 
-		public bool SetMemory(uint address, byte[] bytes)
-		{
-			if (this.ConnectState != ConnectState.Connected) return false;
+    public bool SetMemory(uint address, byte[] bytes)
+    {
+      if (this.ConnectState != ConnectState.Connected) return false;
 
-			return PS3TMAPI.SUCCEEDED(PS3TMAPI.ProcessSetMemory(this.TargetIndex, UNIT, Params.processID, 0, address, bytes));
-		}
+      return PS3TMAPI.SUCCEEDED(PS3TMAPI.ProcessSetMemory(this.TargetIndex, UNIT, Params.processID, 0, address, bytes));
+    }
 
-		public async Task<bool> SetMemoryAsync(uint address, byte[] bytes)
-		{
-			return await Task.Run(() => this.SetMemory(address, bytes));
-		}
+    public async Task<bool> SetMemoryAsync(uint address, byte[] bytes)
+    {
+      return await Task.Run(() => this.SetMemory(address, bytes));
+    }
 
-		public bool SetPowerState(PowerState state, bool isForce = false)
-		{
-			if (this.ConnectState != ConnectState.Connected) return false;
+    public bool SetPowerState(PowerState state, bool isForce = false)
+    {
+      if (this.ConnectState != ConnectState.Connected) return false;
 
-			PS3TMAPI.SNRESULT result = PS3TMAPI.SNRESULT.SN_E_COMMS_ERR;
+      PS3TMAPI.SNRESULT result = PS3TMAPI.SNRESULT.SN_E_COMMS_ERR;
 
-			switch (state)
-			{
-				case PowerState.Off:
-					result = PS3TMAPI.PowerOff(this.TargetIndex, isForce);
-					break;
+      switch (state)
+      {
+        case PowerState.Off:
+          result = PS3TMAPI.PowerOff(this.TargetIndex, isForce);
+          break;
 
-				case PowerState.On:
-					result = PS3TMAPI.PowerOn(this.TargetIndex);
-					break;
-			}
+        case PowerState.On:
+          result = PS3TMAPI.PowerOn(this.TargetIndex);
+          break;
+      }
 
-			return PS3TMAPI.SUCCEEDED(result);
-		}
+      return PS3TMAPI.SUCCEEDED(result);
+    }
 
-		public async Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false)
-		{
-			return await Task.Run(() => this.SetPowerState(state, isForce));
-		}
+    public async Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false)
+    {
+      return await Task.Run(() => this.SetPowerState(state, isForce));
+    }
 
-		public string ProcessInfo()
-		{
-			if (this.ConnectState != ConnectState.Connected) return "";
+    public string ProcessInfo()
+    {
+      if (this.ConnectState != ConnectState.Connected) return "";
 
-			return Params.processID.ToString("X8");
-		}
-	}
+      return Params.processID.ToString("X8");
+    }
+  }
 }

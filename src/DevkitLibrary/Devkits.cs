@@ -22,129 +22,129 @@ using DevkitLibrary.Enums;
 
 namespace DevkitLibrary
 {
-	public class DevKits
-	{
-		public int TargetIndex;
-		public IDevkit Devkit;
-		public DevkitTarget DevkitTarget;
+  public class DevKits
+  {
+    public int TargetIndex;
+    public IDevkit Devkit;
+    public DevkitTarget DevkitTarget;
 
-		public PS3 PS3 {
-			get {
-				return (PS3)this.Devkit;
-			}
-		}
+    public PS3 PS3 {
+      get {
+        return (PS3)this.Devkit;
+      }
+    }
 
-		public Xbox360 Xbox360 {
-			get {
-				return (Xbox360)this.Devkit;
-			}
-		}
+    public Xbox360 Xbox360 {
+      get {
+        return (Xbox360)this.Devkit;
+      }
+    }
 
-		public Extension Extension {
-			get {
-				return new Extension(this.Devkit);
-			}
-		}
+    public Extension Extension {
+      get {
+        return new Extension(this.Devkit);
+      }
+    }
 
-		public void SetTarget(DevkitTarget target, int targetIndex)
-		{
-			this.DevkitTarget = target;
-			this.TargetIndex = targetIndex;
-			this.Devkit = CreateDevkit(target, targetIndex);
-		}
+    public void SetTarget(DevkitTarget target, int targetIndex)
+    {
+      this.DevkitTarget = target;
+      this.TargetIndex = targetIndex;
+      this.Devkit = CreateDevkit(target, targetIndex);
+    }
 
-		internal static IDevkit CreateDevkit(DevkitTarget target, int targetIndex)
-		{
-			switch (target)
-			{
-				case DevkitTarget.PS3:
-					return new PS3(targetIndex);
+    internal static IDevkit CreateDevkit(DevkitTarget target, int targetIndex)
+    {
+      switch (target)
+      {
+        case DevkitTarget.PS3:
+          return new PS3(targetIndex);
 
-				case DevkitTarget.Xbox360:
-					return new Xbox360();
-			}
+        case DevkitTarget.Xbox360:
+          return new Xbox360();
+      }
 
-			return null;
-		}
+      return null;
+    }
 
-		public ConnectState ConnectTarget()
-		{
-			return this.Devkit.Connect();
-		}
+    public ConnectState ConnectTarget()
+    {
+      return this.Devkit.Connect();
+    }
 
-		public async Task<ConnectState> ConnectTargetAsync()
-		{
-			return await this.Devkit.ConnectAsync();
-		}
+    public async Task<ConnectState> ConnectTargetAsync()
+    {
+      return await this.Devkit.ConnectAsync();
+    }
 
-		public bool DisconnectTarget()
-		{
-			return this.Devkit.Disconnect();
-		}
+    public bool DisconnectTarget()
+    {
+      return this.Devkit.Disconnect();
+    }
 
-		public async Task<bool> DisconnectTargetAsync()
-		{
-			return await this.Devkit.DisconnectAsync();
-		}
+    public async Task<bool> DisconnectTargetAsync()
+    {
+      return await this.Devkit.DisconnectAsync();
+    }
 
-		public ConnectState GetConnectState()
-		{
-			return this.Devkit.GetConnectState();
-		}
+    public ConnectState GetConnectState()
+    {
+      return this.Devkit.GetConnectState();
+    }
 
-		public async Task<ConnectState> GetConnectStateAsync()
-		{
-			return await this.Devkit.GetConnectStateAsync();
-		}
+    public async Task<ConnectState> GetConnectStateAsync()
+    {
+      return await this.Devkit.GetConnectStateAsync();
+    }
 
-		public byte[] GetMemory(uint address, uint length)
-		{
-			return this.Devkit.GetMemory(address, length);
-		}
+    public byte[] GetMemory(uint address, uint length)
+    {
+      return this.Devkit.GetMemory(address, length);
+    }
 
-		public async Task<byte[]> GetMemoryAsync(uint address, uint length)
-		{
-			return await this.Devkit.GetMemoryAsync(address, length);
-		}
+    public async Task<byte[]> GetMemoryAsync(uint address, uint length)
+    {
+      return await this.Devkit.GetMemoryAsync(address, length);
+    }
 
-		public PowerState GetPowerState()
-		{
-			return this.Devkit.GetPowerState();
-		}
+    public PowerState GetPowerState()
+    {
+      return this.Devkit.GetPowerState();
+    }
 
-		public async Task<PowerState> GetPowerStateAsync()
-		{
-			return await this.Devkit.GetPowerStateAsync();
-		}
+    public async Task<PowerState> GetPowerStateAsync()
+    {
+      return await this.Devkit.GetPowerStateAsync();
+    }
 
-		public bool ProcessAttach()
-		{
-			return this.Devkit.ProcessAttach();
-		}
+    public bool ProcessAttach()
+    {
+      return this.Devkit.ProcessAttach();
+    }
 
-		public async Task<bool> ProcessAttachAsync()
-		{
-			return await this.Devkit.ProcessAttachAsync();
-		}
+    public async Task<bool> ProcessAttachAsync()
+    {
+      return await this.Devkit.ProcessAttachAsync();
+    }
 
-		public bool SetMemory(uint address, byte[] bytes)
-		{
-			return this.Devkit.SetMemory(address, bytes);
-		}
+    public bool SetMemory(uint address, byte[] bytes)
+    {
+      return this.Devkit.SetMemory(address, bytes);
+    }
 
-		public async Task<bool> SetMemoryAsync(uint address, byte[] bytes)
-		{
-			return await this.Devkit.SetMemoryAsync(address, bytes);
-		}
+    public async Task<bool> SetMemoryAsync(uint address, byte[] bytes)
+    {
+      return await this.Devkit.SetMemoryAsync(address, bytes);
+    }
 
-		public bool SetPowerState(PowerState state, bool isForce = false)
-		{
-			return this.Devkit.SetPowerState(state, isForce);
-		}
+    public bool SetPowerState(PowerState state, bool isForce = false)
+    {
+      return this.Devkit.SetPowerState(state, isForce);
+    }
 
-		public async Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false)
-		{
-			return await this.Devkit.SetPowerStateAsync(state, isForce);
-		}
-	}
+    public async Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false)
+    {
+      return await this.Devkit.SetPowerStateAsync(state, isForce);
+    }
+  }
 }
