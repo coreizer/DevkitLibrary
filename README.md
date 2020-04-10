@@ -1,18 +1,22 @@
 # DevkitLibrary
-PS3, Xbox 360 Devkit
+純正の開発キットを使用して、簡単に接続する機能を提供します。
 
-Example:
+使用例:
 ```
+
+// Xbox 360
 DevKits devkits = new DevKits();
-devkits.SetTarget(DevkitTarget.PS3, 0);
+devkits.SetTarget(DevkitTarget.Xbox360, 0);
+
+// PS3
 DevKits devKits = new  DevKits();
-devkits.SetTarget(DevkitTarget.PS3, 0); // Initialize
+devkits.SetTarget(DevkitTarget.PS3, 0);
 
 ConnectStat state = await devkits.ConnectTargetAsync();
 ```
 
-## Author
+### 作成者
 * **Coreizer**
 
-## License
+### License (ライセンス)
 [Public License v3.0](LICENSE)
