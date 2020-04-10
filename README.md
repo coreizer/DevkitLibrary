@@ -1,10 +1,18 @@
 # DevkitLibrary
 PS3, Xbox 360 Devkit
 
-how to use
+Example:
 ```
 DevKits devkits = new DevKits();
 devkits.SetTarget(DevkitTarget.PS3, 0);
+DevKits devKits = new  DevKits();
+devkits.SetTarget(DevkitTarget.PS3, 0); // Initialize
 
-ConnectStat state = await devkits.ConnectTarget();
+ConnectStat state = await devkits.ConnectTargetAsync();
 ```
+
+## Author
+* **Coreizer**
+
+## License
+[Public License v3.0](LICENSE)
