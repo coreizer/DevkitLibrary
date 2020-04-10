@@ -24,7 +24,7 @@ namespace DevkitLibrary.Demo
 {
   public partial class Main : Form
   {
-    private DevKits devkit = new DevKits();
+    private DevKits devkits = new DevKits();
 
     public Main()
     {
@@ -39,13 +39,13 @@ namespace DevkitLibrary.Demo
 
       try
       {
-        ConnectState state = await this.devkit.ConnectTargetAsync();
+        ConnectState state = await this.devkits.ConnectTargetAsync();
 
         switch (state)
         {
           case ConnectState.Connected:
           {
-            if (this.devkit.DevkitTarget == DevkitTarget.PS3) this.buttonProcessAttach.Enabled = true;
+            if (this.devkits.DevkitTarget == DevkitTarget.PS3) this.buttonProcessAttach.Enabled = true;
 
             this.buttonConnect.Enabled = false;
             this.buttonConnect.Text = "Connected";
@@ -79,14 +79,14 @@ namespace DevkitLibrary.Demo
         case "ps3":
         {
           this.buttonProcessAttach.Text = "Process Attach";
-          this.devkit.SetTarget(DevkitTarget.PS3, 0);
+          this.devkits.SetTarget(DevkitTarget.PS3, 0);
           break;
         }
 
         case "xbox360":
         {
           this.buttonProcessAttach.Text = "Not Supported";
-          this.devkit.SetTarget(DevkitTarget.Xbox360, 0);
+          this.devkits.SetTarget(DevkitTarget.Xbox360, 0);
           break;
         }
       }
@@ -97,7 +97,7 @@ namespace DevkitLibrary.Demo
       try
       {
         this.buttonProcessAttach.Enabled = false;
-        bool result = await this.devkit.ProcessAttachAsync();
+        bool result = await this.devkits.ProcessAttachAsync();
         if (result)
         {
           MessageBox.Show("Current game process is attached successfully !", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
