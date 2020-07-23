@@ -4,3 +4,9 @@ D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary\bin\Debug\
 D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.CopyComplete
 D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.dll
 D:\Working Project\Visual Studio 2019\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.pdb
+D:\Workflow\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csprojAssemblyReference.cache
+D:\Workflow\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.dll
+D:\Workflow\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.pdb
+D:\Workflow\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\DevkitLibrary.dll
+D:\Workflow\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\DevkitLibrary.pdb
+D:\Workflow\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.CopyComplete

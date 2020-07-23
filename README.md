@@ -12,7 +12,7 @@ devkits.SetTarget(DevkitTarget.Xbox360, 0);
 DevKits devKits = new  DevKits();
 devkits.SetTarget(DevkitTarget.PS3, 0);
 
-ConnectStat state = await devkits.ConnectTargetAsync();
+ConnectState state = await devkits.ConnectTargetAsync();
 ```
 
 ### 作成者

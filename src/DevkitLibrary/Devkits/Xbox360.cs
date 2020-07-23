@@ -18,8 +18,8 @@
 using System;
 using System.Threading.Tasks;
 
-using DevkitLibrary.Enums;
 using XDevkit;
+using DevkitLibrary.Enums;
 
 namespace DevkitLibrary.Devkits
 {

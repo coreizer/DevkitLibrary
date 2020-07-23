@@ -49,7 +49,7 @@ namespace DevkitLibrary.Demo
 
             this.buttonConnect.Enabled = false;
             this.buttonConnect.Text = "Connected";
-            MessageBox.Show("Connect to Target", "Devkit", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Connected to Target", "Devkit", MessageBoxButtons.OK, MessageBoxIcon.Information);
             break;
           }
 
