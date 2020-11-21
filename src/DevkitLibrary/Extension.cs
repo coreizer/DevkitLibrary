@@ -25,7 +25,7 @@ namespace DevkitLibrary
 {
   public sealed class Extension
   {
-    private IDevkit devkit;
+    private readonly IDevkit devkit;
 
     public Extension(IDevkit devkit)
     {

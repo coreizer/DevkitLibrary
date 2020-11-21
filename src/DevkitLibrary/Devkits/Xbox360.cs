@@ -38,19 +38,19 @@ namespace DevkitLibrary.Devkits
 
     public int TargetIndex => throw new NotImplementedException();
 
-    public ConnectState ConnectState {
+    public ConnectionStatus ConnectionStatus {
       get;
       private set;
     }
 
-    public ConnectState Connect()
+    public ConnectionStatus Connect()
     {
-      this.ConnectState = ConnectState.Unavailable;
+      this.ConnectionStatus = ConnectionStatus.Unavailable;
 
       if (Params.XboxManager != null)
       {
-        this.ConnectState = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
-          ConnectState.Connected : ConnectState.Disconnected;
+        this.ConnectionStatus = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
+          ConnectionStatus.Connected : ConnectionStatus.Disconnected;
       }
       else
       {
@@ -61,22 +61,22 @@ namespace DevkitLibrary.Devkits
         if (Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName))
         {
           Params.XboxConsole.DebugTarget.ConnectAsDebugger(NAME, XboxDebugConnectFlags.Force);
-          this.ConnectState = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
-            ConnectState.Connected : ConnectState.Disconnected;
+          this.ConnectionStatus = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
+            ConnectionStatus.Connected : ConnectionStatus.Disconnected;
         }
       }
 
-      return this.ConnectState;
+      return this.ConnectionStatus;
     }
 
-    public async Task<ConnectState> ConnectAsync()
+    public async Task<ConnectionStatus> ConnectAsync()
     {
       return await Task.Run(() => this.Connect());
     }
 
     public bool Disconnect()
     {
-      if (this.ConnectState != ConnectState.Connected) return false;
+      if (this.ConnectionStatus != ConnectionStatus.Connected) return false;
 
       try
       {
@@ -95,22 +95,22 @@ namespace DevkitLibrary.Devkits
       return await Task.Run(() => this.Disconnect());
     }
 
-    public ConnectState GetConnectState()
+    public ConnectionStatus GetConnectionStatus()
     {
-      if (this.ConnectState != ConnectState.Connected) return ConnectState.Unavailable;
+      if (this.ConnectionStatus != ConnectionStatus.Connected) return ConnectionStatus.Unavailable;
 
       return Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
-          ConnectState.Connected : ConnectState.Disconnected;
+          ConnectionStatus.Connected : ConnectionStatus.Disconnected;
     }
 
-    public async Task<ConnectState> GetConnectStateAsync()
+    public async Task<ConnectionStatus> GetConnectionStatusAsync()
     {
-      return await Task.Run(() => this.GetConnectState());
+      return await Task.Run(() => this.GetConnectionStatus());
     }
 
     public byte[] GetMemory(uint address, uint length)
     {
-      if (this.ConnectState != ConnectState.Connected) return new byte[0];
+      if (this.ConnectionStatus != ConnectionStatus.Connected) return new byte[0];
 
       byte[] bytes = new byte[length];
       Params.XboxConsole.DebugTarget.GetMemory(address, length, bytes, out uint bytesRead);
@@ -124,7 +124,7 @@ namespace DevkitLibrary.Devkits
 
     public bool SetMemory(uint address, byte[] bytes)
     {
-      if (this.ConnectState != ConnectState.Connected) return false;
+      if (this.ConnectionStatus != ConnectionStatus.Connected) return false;
 
       Params.XboxConsole.DebugTarget.SetMemory(address, (uint)bytes.Length, bytes, out uint bytesWritten);
       return true;

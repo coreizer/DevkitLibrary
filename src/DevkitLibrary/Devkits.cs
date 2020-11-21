@@ -67,12 +67,12 @@ namespace DevkitLibrary
       return null;
     }
 
-    public ConnectState ConnectTarget()
+    public ConnectionStatus ConnectTarget()
     {
       return this.Devkit.Connect();
     }
 
-    public async Task<ConnectState> ConnectTargetAsync()
+    public async Task<ConnectionStatus> ConnectTargetAsync()
     {
       return await this.Devkit.ConnectAsync();
     }
@@ -87,14 +87,14 @@ namespace DevkitLibrary
       return await this.Devkit.DisconnectAsync();
     }
 
-    public ConnectState GetConnectState()
+    public ConnectionStatus GetConnectionStatus()
     {
-      return this.Devkit.GetConnectState();
+      return this.Devkit.GetConnectionStatus();
     }
 
-    public async Task<ConnectState> GetConnectStateAsync()
+    public async Task<ConnectionStatus> GetConnectionStatusAsync()
     {
-      return await this.Devkit.GetConnectStateAsync();
+      return await this.Devkit.GetConnectionStatusAsync();
     }
 
     public byte[] GetMemory(uint address, uint length)

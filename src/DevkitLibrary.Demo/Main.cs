@@ -57,11 +57,11 @@ namespace DevkitLibrary.Demo
 
       try
       {
-        ConnectState state = await this.devkits.ConnectTargetAsync();
+        ConnectionStatus status = await this.devkits.ConnectTargetAsync();
 
-        switch (state)
+        switch (status)
         {
-          case ConnectState.Connected:
+          case ConnectionStatus.Connected:
             if (this.devkits.DevkitTarget == DevkitTarget.PS3) this.darkButtonAttach.Enabled = true;
 
             this.darkButtonConnect.Enabled = false;

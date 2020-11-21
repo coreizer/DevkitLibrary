@@ -17,7 +17,7 @@
 
 namespace DevkitLibrary.Enums
 {
-  public enum ConnectState : byte
+  public enum ConnectionStatus : byte
   {
     Connected = 0x01,
     Disconnected = 0x00,

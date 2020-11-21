@@ -25,11 +25,11 @@ namespace DevkitLibrary.Devkits
   {
     int TargetIndex { get; }
 
-    ConnectState ConnectState { get; }
+    ConnectionStatus ConnectionStatus { get; }
 
-    ConnectState Connect();
+    ConnectionStatus Connect();
 
-    Task<ConnectState> ConnectAsync();
+    Task<ConnectionStatus> ConnectAsync();
 
     bool Disconnect();
 
@@ -55,8 +55,8 @@ namespace DevkitLibrary.Devkits
 
     Task<PowerState> GetPowerStateAsync();
 
-    ConnectState GetConnectState();
+    ConnectionStatus GetConnectionStatus();
 
-    Task<ConnectState> GetConnectStateAsync();
+    Task<ConnectionStatus> GetConnectionStatusAsync();
   }
 }
