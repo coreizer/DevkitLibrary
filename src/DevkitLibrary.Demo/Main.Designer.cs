@@ -28,79 +28,81 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.comboBoxDevkit = new System.Windows.Forms.ComboBox();
-			this.buttonConnect = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
-			this.buttonProcessAttach = new System.Windows.Forms.Button();
-			this.SuspendLayout();
-			// 
-			// comboBoxDevkit
-			// 
-			this.comboBoxDevkit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBoxDevkit.FormattingEnabled = true;
-			this.comboBoxDevkit.Items.AddRange(new object[] {
+      this.darkButtonConnect = new DarkUI.Controls.DarkButton();
+      this.darkComboBoxDevkit = new DarkUI.Controls.DarkComboBox();
+      this.darkButtonAttach = new DarkUI.Controls.DarkButton();
+      this.darkGroupBox1 = new DarkUI.Controls.DarkGroupBox();
+      this.darkGroupBox1.SuspendLayout();
+      this.SuspendLayout();
+      // 
+      // darkButtonConnect
+      // 
+      this.darkButtonConnect.Enabled = false;
+      this.darkButtonConnect.Location = new System.Drawing.Point(101, 169);
+      this.darkButtonConnect.Name = "darkButtonConnect";
+      this.darkButtonConnect.Padding = new System.Windows.Forms.Padding(5);
+      this.darkButtonConnect.Size = new System.Drawing.Size(223, 45);
+      this.darkButtonConnect.TabIndex = 4;
+      this.darkButtonConnect.Text = "Connect";
+      this.darkButtonConnect.Click += new System.EventHandler(this.darkButtonConnect_Click);
+      // 
+      // darkComboBoxDevkit
+      // 
+      this.darkComboBoxDevkit.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+      this.darkComboBoxDevkit.FormattingEnabled = true;
+      this.darkComboBoxDevkit.Items.AddRange(new object[] {
             "PS3",
             "Xbox360"});
-			this.comboBoxDevkit.Location = new System.Drawing.Point(28, 84);
-			this.comboBoxDevkit.Name = "comboBoxDevkit";
-			this.comboBoxDevkit.Size = new System.Drawing.Size(392, 26);
-			this.comboBoxDevkit.TabIndex = 0;
-			this.comboBoxDevkit.SelectedIndexChanged += new System.EventHandler(this.comboBoxDevkit_SelectedIndexChanged);
-			// 
-			// buttonConnect
-			// 
-			this.buttonConnect.Location = new System.Drawing.Point(28, 148);
-			this.buttonConnect.Name = "buttonConnect";
-			this.buttonConnect.Size = new System.Drawing.Size(193, 40);
-			this.buttonConnect.TabIndex = 1;
-			this.buttonConnect.Text = "Connect";
-			this.buttonConnect.UseVisualStyleBackColor = true;
-			this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(25, 50);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(56, 18);
-			this.label1.TabIndex = 2;
-			this.label1.Text = "Devkit";
-			// 
-			// buttonProcessAttach
-			// 
-			this.buttonProcessAttach.Enabled = false;
-			this.buttonProcessAttach.Location = new System.Drawing.Point(227, 148);
-			this.buttonProcessAttach.Name = "buttonProcessAttach";
-			this.buttonProcessAttach.Size = new System.Drawing.Size(193, 40);
-			this.buttonProcessAttach.TabIndex = 3;
-			this.buttonProcessAttach.Text = "Process Attach";
-			this.buttonProcessAttach.UseVisualStyleBackColor = true;
-			this.buttonProcessAttach.Click += new System.EventHandler(this.buttonProcessAttach_Click);
-			// 
-			// Main
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(448, 251);
-			this.Controls.Add(this.buttonProcessAttach);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.buttonConnect);
-			this.Controls.Add(this.comboBoxDevkit);
-			this.MaximizeBox = false;
-			this.Name = "Main";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Devkit Lib by coreizer v0.2";
-			this.ResumeLayout(false);
-			this.PerformLayout();
+      this.darkComboBoxDevkit.Location = new System.Drawing.Point(101, 94);
+      this.darkComboBoxDevkit.Name = "darkComboBoxDevkit";
+      this.darkComboBoxDevkit.Size = new System.Drawing.Size(452, 26);
+      this.darkComboBoxDevkit.TabIndex = 6;
+      this.darkComboBoxDevkit.SelectedIndexChanged += new System.EventHandler(this.darkComboBoxDevkit_SelectedIndexChanged);
+      // 
+      // darkButtonAttach
+      // 
+      this.darkButtonAttach.Enabled = false;
+      this.darkButtonAttach.Location = new System.Drawing.Point(330, 169);
+      this.darkButtonAttach.Name = "darkButtonAttach";
+      this.darkButtonAttach.Padding = new System.Windows.Forms.Padding(5);
+      this.darkButtonAttach.Size = new System.Drawing.Size(223, 45);
+      this.darkButtonAttach.TabIndex = 7;
+      this.darkButtonAttach.Text = "Process Attach";
+      this.darkButtonAttach.Click += new System.EventHandler(this.darkButtonAttach_Click);
+      // 
+      // darkGroupBox1
+      // 
+      this.darkGroupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+      this.darkGroupBox1.Controls.Add(this.darkComboBoxDevkit);
+      this.darkGroupBox1.Controls.Add(this.darkButtonAttach);
+      this.darkGroupBox1.Controls.Add(this.darkButtonConnect);
+      this.darkGroupBox1.Location = new System.Drawing.Point(12, 12);
+      this.darkGroupBox1.Name = "darkGroupBox1";
+      this.darkGroupBox1.Size = new System.Drawing.Size(654, 296);
+      this.darkGroupBox1.TabIndex = 8;
+      this.darkGroupBox1.TabStop = false;
+      this.darkGroupBox1.Text = "Devkit :";
+      // 
+      // Main
+      // 
+      this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.ClientSize = new System.Drawing.Size(678, 320);
+      this.Controls.Add(this.darkGroupBox1);
+      this.MaximizeBox = false;
+      this.Name = "Main";
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+      this.Text = "DevkitLib by coreizer v0.2.5";
+      this.darkGroupBox1.ResumeLayout(false);
+      this.ResumeLayout(false);
 
 		}
 
 		#endregion
-
-		private System.Windows.Forms.ComboBox comboBoxDevkit;
-		private System.Windows.Forms.Button buttonConnect;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Button buttonProcessAttach;
-	}
+    private DarkUI.Controls.DarkButton darkButtonConnect;
+    private DarkUI.Controls.DarkComboBox darkComboBoxDevkit;
+    private DarkUI.Controls.DarkButton darkButtonAttach;
+    private DarkUI.Controls.DarkGroupBox darkGroupBox1;
+  }
 }
 

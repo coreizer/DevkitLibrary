@@ -18,24 +18,42 @@
 using System;
 using System.Windows.Forms;
 
+using DarkUI.Forms;
 using DevkitLibrary.Enums;
 
 namespace DevkitLibrary.Demo
 {
-  public partial class Main : Form
+  public partial class Main : DarkForm
   {
     private DevKits devkits = new DevKits();
 
     public Main()
     {
       this.InitializeComponent();
-      this.comboBoxDevkit.SelectedIndex = 0;
     }
 
-    private async void buttonConnect_Click(object sender, EventArgs e)
+    private void darkComboBoxDevkit_SelectedIndexChanged(object sender, EventArgs e)
     {
-      this.buttonConnect.Enabled = false;
-      this.comboBoxDevkit.Enabled = false;
+      switch ((sender as ComboBox).Text.ToUpper())
+      {
+        case "PS3":
+          this.darkButtonAttach.Text = "Process Attach";
+          this.devkits.SetTarget(DevkitTarget.PS3, 0);
+          break;
+
+        case "XBOX360":
+          this.darkButtonAttach.Text = "Not Supported";
+          this.devkits.SetTarget(DevkitTarget.Xbox360, 0);
+          break;
+      }
+
+      this.darkButtonConnect.Enabled = true;
+    }
+
+    private async void darkButtonConnect_Click(object sender, EventArgs e)
+    {
+      this.darkButtonConnect.Enabled = false;
+      this.darkComboBoxDevkit.Enabled = false;
 
       try
       {
@@ -44,76 +62,52 @@ namespace DevkitLibrary.Demo
         switch (state)
         {
           case ConnectState.Connected:
-          {
-            if (this.devkits.DevkitTarget == DevkitTarget.PS3) this.buttonProcessAttach.Enabled = true;
+            if (this.devkits.DevkitTarget == DevkitTarget.PS3) this.darkButtonAttach.Enabled = true;
 
-            this.buttonConnect.Enabled = false;
-            this.buttonConnect.Text = "Connected";
-            MessageBox.Show($"Connected to Target", "Devkit", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.darkButtonConnect.Enabled = false;
+            this.darkButtonConnect.Text = "Connected";
+            DarkMessageBox.ShowInformation($"Connected to Target", "Devkit", DarkDialogButton.Ok);
             break;
-          }
 
           default:
-          {
-            this.buttonConnect.Enabled = true;
-            MessageBox.Show("Connection error", "Devkit", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            this.darkButtonConnect.Enabled = true;
+            DarkMessageBox.ShowWarning("Connection error", "Devkit", DarkDialogButton.Ok);
             break;
-          }
         }
       }
       catch (Exception ex)
       {
-        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        this.buttonConnect.Enabled = true;
+        DarkMessageBox.ShowError(ex.Message, $"Error - {Application.ProductName}", DarkDialogButton.Ok);
+        this.darkButtonConnect.Enabled = true;
       }
       finally
       {
-        this.comboBoxDevkit.Enabled = true;
+        this.darkComboBoxDevkit.Enabled = true;
       }
     }
 
-    private void comboBoxDevkit_SelectedIndexChanged(object sender, EventArgs e)
-    {
-      switch (this.comboBoxDevkit.Text.ToLower())
-      {
-        case "ps3":
-        {
-          this.buttonProcessAttach.Text = "Process Attach";
-          this.devkits.SetTarget(DevkitTarget.PS3, 0);
-          break;
-        }
-
-        case "xbox360":
-        {
-          this.buttonProcessAttach.Text = "Not Supported";
-          this.devkits.SetTarget(DevkitTarget.Xbox360, 0);
-          break;
-        }
-      }
-    }
-
-    private async void buttonProcessAttach_Click(object sender, EventArgs e)
+    private async void darkButtonAttach_Click(object sender, EventArgs e)
     {
       try
       {
-        this.buttonProcessAttach.Enabled = false;
+        this.darkButtonAttach.Enabled = false;
         bool result = await this.devkits.ProcessAttachAsync();
         if (result)
         {
-          MessageBox.Show("Current game process is attached successfully !", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+          DarkMessageBox.ShowInformation("Current game process is attached successfully !", Application.ProductName, DarkDialogButton.Ok);
         }
         else
         {
-          MessageBox.Show("No game process found", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+          DarkMessageBox.ShowWarning("No game process found", Application.ProductName, DarkDialogButton.Ok);
         }
       }
       catch (Exception ex)
       {
-        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        DarkMessageBox.ShowError(ex.Message, $"Error - {Application.ProductName}", DarkDialogButton.Ok);
       }
       finally
       {
-        this.buttonProcessAttach.Enabled = true;
+        this.darkButtonAttach.Enabled = true;
       }
     }
   }
