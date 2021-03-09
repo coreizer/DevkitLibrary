@@ -37,6 +37,10 @@ D:\Workflow\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitL
 D:\Workflow\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.CopyComplete
 D:\Workflow\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.exe
 D:\Workflow\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.pdb
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.Main.resources
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.Properties.Resources.resources
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.GenerateResource.cache
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.CoreCompileInputs.cache
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\DevkitLibrary.Demo.exe.config
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\DevkitLibrary.Demo.exe
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\DevkitLibrary.Demo.pdb
@@ -45,10 +49,6 @@ D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\DevkitLibrary.dl
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\PS3TMAPI_NET.dll
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\DevkitLibrary.pdb
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csprojAssemblyReference.cache
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.Main.resources
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.Properties.Resources.resources
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.GenerateResource.cache
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.CoreCompileInputs.cache
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.CopyComplete
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.exe
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.pdb

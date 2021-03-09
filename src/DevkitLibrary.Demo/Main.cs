@@ -17,98 +17,102 @@
 
 using System;
 using System.Windows.Forms;
-
 using DarkUI.Forms;
 using DevkitLibrary.Enums;
 
 namespace DevkitLibrary.Demo
 {
-  public partial class Main : DarkForm
-  {
-    private DevKits devkits = new DevKits();
+   public partial class Main : DarkForm
+   {
+      private DevKits devkits = new DevKits();
 
-    public Main()
-    {
-      this.InitializeComponent();
-    }
-
-    private void darkComboBoxDevkit_SelectedIndexChanged(object sender, EventArgs e)
-    {
-      switch ((sender as ComboBox).Text.ToUpper())
+      public Main()
       {
-        case "PS3":
-          this.darkButtonAttach.Text = "Process Attach";
-          this.devkits.SetTarget(DevkitTarget.PS3, 0);
-          break;
-
-        case "XBOX360":
-          this.darkButtonAttach.Text = "Not Supported";
-          this.devkits.SetTarget(DevkitTarget.Xbox360, 0);
-          break;
+         this.InitializeComponent();
       }
 
-      this.darkButtonConnect.Enabled = true;
-    }
-
-    private async void darkButtonConnect_Click(object sender, EventArgs e)
-    {
-      this.darkButtonConnect.Enabled = false;
-      this.darkComboBoxDevkit.Enabled = false;
-
-      try
+      private void darkComboBoxDevkit_SelectedIndexChanged(object sender, EventArgs e)
       {
-        ConnectionStatus status = await this.devkits.ConnectTargetAsync();
+         switch ((sender as ComboBox).Text.ToUpper())
+         {
+            case "PS3":
+               this.darkButtonAttach.Text = "Process Attach";
+               this.devkits.SetTarget(DevkitTarget.PS3, 0);
+               break;
 
-        switch (status)
-        {
-          case ConnectionStatus.Connected:
-            if (this.devkits.DevkitTarget == DevkitTarget.PS3) this.darkButtonAttach.Enabled = true;
+            case "XBOX360":
+               this.darkButtonAttach.Text = "Not Supported";
+               this.devkits.SetTarget(DevkitTarget.Xbox360, 0);
+               break;
+         }
 
-            this.darkButtonConnect.Enabled = false;
-            this.darkButtonConnect.Text = "Connected";
-            DarkMessageBox.ShowInformation($"Connected to Target", "Devkit", DarkDialogButton.Ok);
-            break;
+         this.darkButtonConnect.Enabled = true;
+      }
 
-          default:
+      private async void darkButtonConnect_Click(object sender, EventArgs e)
+      {
+         this.darkButtonConnect.Enabled = false;
+         this.darkComboBoxDevkit.Enabled = false;
+
+         try
+         {
+            ConnectionStatus status = await this.devkits.ConnectTargetAsync();
+
+            switch (status)
+            {
+               case ConnectionStatus.Connected:
+                  if (this.devkits.DevkitTarget == DevkitTarget.PS3) this.darkButtonAttach.Enabled = true;
+
+                  this.darkButtonConnect.Enabled = false;
+                  this.darkButtonConnect.Text = "Connected";
+                  DarkMessageBox.ShowInformation($"Connected to Target", "Devkit", DarkDialogButton.Ok);
+                  break;
+
+               default:
+                  this.darkButtonConnect.Enabled = true;
+                  DarkMessageBox.ShowWarning("Connection error", "Devkit", DarkDialogButton.Ok);
+                  break;
+            }
+         }
+         catch (Exception ex)
+         {
+            DarkMessageBox.ShowError(ex.Message, $"Error - {Application.ProductName}", DarkDialogButton.Ok);
             this.darkButtonConnect.Enabled = true;
-            DarkMessageBox.ShowWarning("Connection error", "Devkit", DarkDialogButton.Ok);
-            break;
-        }
+         }
+         finally
+         {
+            this.darkComboBoxDevkit.Enabled = true;
+         }
       }
-      catch (Exception ex)
-      {
-        DarkMessageBox.ShowError(ex.Message, $"Error - {Application.ProductName}", DarkDialogButton.Ok);
-        this.darkButtonConnect.Enabled = true;
-      }
-      finally
-      {
-        this.darkComboBoxDevkit.Enabled = true;
-      }
-    }
 
-    private async void darkButtonAttach_Click(object sender, EventArgs e)
-    {
-      try
+      private async void darkButtonAttach_Click(object sender, EventArgs e)
       {
-        this.darkButtonAttach.Enabled = false;
-        bool result = await this.devkits.ProcessAttachAsync();
-        if (result)
-        {
-          DarkMessageBox.ShowInformation("Current game process is attached successfully !", Application.ProductName, DarkDialogButton.Ok);
-        }
-        else
-        {
-          DarkMessageBox.ShowWarning("No game process found", Application.ProductName, DarkDialogButton.Ok);
-        }
+         try
+         {
+            this.darkButtonAttach.Enabled = false;
+
+            bool result = await this.devkits.ProcessAttachAsync(ExceptionLevel.Ignore);
+            if (result)
+            {
+               DarkMessageBox.ShowInformation("Current game process is attached successfully !", Application.ProductName, DarkDialogButton.Ok);
+            }
+            else {
+               DarkMessageBox.ShowWarning($"No game process found", Application.ProductName, DarkDialogButton.Ok);
+            }
+         }
+         catch (DevKitProcessAttachFailedException ex)
+         {
+            DarkMessageBox.ShowWarning($"No game process found\r\n{ex.Message}", Application.ProductName, DarkDialogButton.Ok);
+         }
+         catch (Exception ex)
+         {
+            DarkMessageBox.ShowError(ex.Message, $"Error - {Application.ProductName}", DarkDialogButton.Ok);
+         }
+
+         finally
+         {
+            this.darkButtonAttach.Enabled = true;
+         }
       }
-      catch (Exception ex)
-      {
-        DarkMessageBox.ShowError(ex.Message, $"Error - {Application.ProductName}", DarkDialogButton.Ok);
-      }
-      finally
-      {
-        this.darkButtonAttach.Enabled = true;
-      }
-    }
-  }
+   }
 }

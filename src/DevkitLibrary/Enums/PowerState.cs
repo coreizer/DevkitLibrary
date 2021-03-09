@@ -17,11 +17,11 @@
 
 namespace DevkitLibrary.Enums
 {
-  public enum PowerState
-  {
-    Suspended,
-    On,
-    Off,
-    Unknown
-  }
+   public enum PowerState
+   {
+      Suspended,
+      On,
+      Off,
+      Unknown
+   }
 }

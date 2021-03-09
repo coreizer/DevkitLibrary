@@ -19,7 +19,7 @@ using System;
 
 namespace DevkitLibrary.Devkits
 {
-  public class NotSupportedAttribute : Attribute
-  {
-  }
+   public class NotSupportedAttribute : Attribute
+   {
+   }
 }

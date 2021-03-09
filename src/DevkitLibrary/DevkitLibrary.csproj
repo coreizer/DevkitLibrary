@@ -50,17 +50,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DevkitConnectFailedException.cs" />
     <Compile Include="Devkits\IDevkit.cs" />
     <Compile Include="Devkits\NotSupportedAttribute.cs" />
     <Compile Include="Enums\DevkitTarget.cs" />
+    <Compile Include="Enums\ExceptionLevel.cs" />
     <Compile Include="Enums\PowerState.cs" />
     <Compile Include="Devkits\PS3.cs" />
     <Compile Include="Enums\ConnectionStatus.cs" />
     <Compile Include="Enums\Endian.cs" />
     <Compile Include="Extension.cs" />
+    <Compile Include="DevKitProcessAttachFailedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Devkits.cs" />
     <Compile Include="Devkits\Xbox360.cs" />
+    <Compile Include="DevkitNotFoundException .cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

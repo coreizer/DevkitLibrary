@@ -15,48 +15,47 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
-
 using DevkitLibrary.Enums;
+using System.Threading.Tasks;
 
 namespace DevkitLibrary.Devkits
 {
-  public interface IDevkit
-  {
-    int TargetIndex { get; }
+   public interface IDevkit
+   {
+      int TargetIndex { get; }
 
-    ConnectionStatus ConnectionStatus { get; }
+      ConnectionStatus ConnectionStatus { get; }
 
-    ConnectionStatus Connect();
+      ConnectionStatus Connect(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore);
 
-    Task<ConnectionStatus> ConnectAsync();
+      Task<ConnectionStatus> ConnectAsync(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore);
 
-    bool Disconnect();
+      bool Disconnect();
 
-    Task<bool> DisconnectAsync();
+      Task<bool> DisconnectAsync();
 
-    bool ProcessAttach();
+      bool ProcessAttach(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore);
 
-    Task<bool> ProcessAttachAsync();
+      Task<bool> ProcessAttachAsync(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore);
 
-    bool SetMemory(uint address, byte[] bytes);
+      bool SetMemory(uint address, byte[] bytes);
 
-    Task<bool> SetMemoryAsync(uint address, byte[] bytes);
+      Task<bool> SetMemoryAsync(uint address, byte[] bytes);
 
-    byte[] GetMemory(uint address, uint length);
+      byte[] GetMemory(uint address, uint length);
 
-    Task<byte[]> GetMemoryAsync(uint address, uint length);
+      Task<byte[]> GetMemoryAsync(uint address, uint length);
 
-    bool SetPowerState(PowerState state, bool isForce = false);
+      bool SetPowerState(PowerState state, bool isForce = false);
 
-    Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false);
+      Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false);
 
-    PowerState GetPowerState();
+      PowerState GetPowerState();
 
-    Task<PowerState> GetPowerStateAsync();
+      Task<PowerState> GetPowerStateAsync();
 
-    ConnectionStatus GetConnectionStatus();
+      ConnectionStatus GetConnectionStatus();
 
-    Task<ConnectionStatus> GetConnectionStatusAsync();
-  }
+      Task<ConnectionStatus> GetConnectionStatusAsync();
+   }
 }

@@ -15,184 +15,192 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using DevkitLibrary.Enums;
 using System;
 using System.Threading.Tasks;
-
 using XDevkit;
-using DevkitLibrary.Enums;
 
 namespace DevkitLibrary.Devkits
 {
-  public class Xbox360 : IDevkit
-  {
-    internal class Params
-    {
-      public static string UserName;
-      public static IXboxManager XboxManager;
-      public static IXboxConsole XboxConsole;
-      public static string DebuggerName;
-    }
-
-    private const string NAME = "coreizer_xdevkit";
-    private const string GUID = "A5EB45D8-F3B6-49B9-984A-0D313AB60342";
-
-    public int TargetIndex => throw new NotImplementedException();
-
-    public ConnectionStatus ConnectionStatus {
-      get;
-      private set;
-    }
-
-    public ConnectionStatus Connect()
-    {
-      this.ConnectionStatus = ConnectionStatus.Unavailable;
-
-      if (Params.XboxManager != null)
+   public class Xbox360 : IDevkit
+   {
+      internal class Params
       {
-        this.ConnectionStatus = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
-          ConnectionStatus.Connected : ConnectionStatus.Disconnected;
-      }
-      else
-      {
-        Guid clsid = new Guid(GUID);
-        Params.XboxManager = (XboxManager)Activator.CreateInstance(Type.GetTypeFromCLSID(clsid));
-        Params.XboxConsole = Params.XboxManager.OpenConsole(Params.XboxManager.DefaultConsole);
-
-        if (Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName))
-        {
-          Params.XboxConsole.DebugTarget.ConnectAsDebugger(NAME, XboxDebugConnectFlags.Force);
-          this.ConnectionStatus = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
-            ConnectionStatus.Connected : ConnectionStatus.Disconnected;
-        }
+         public static string UserName;
+         public static IXboxManager XboxManager;
+         public static IXboxConsole XboxConsole;
+         public static string DebuggerName;
       }
 
-      return this.ConnectionStatus;
-    }
+      private const string NAME = "coreizer_xdevkit";
+      private const string GUID = "A5EB45D8-F3B6-49B9-984A-0D313AB60342";
 
-    public async Task<ConnectionStatus> ConnectAsync()
-    {
-      return await Task.Run(() => this.Connect());
-    }
+      public int TargetIndex => throw new NotImplementedException();
 
-    public bool Disconnect()
-    {
-      if (this.ConnectionStatus != ConnectionStatus.Connected) return false;
-
-      try
+      public ConnectionStatus ConnectionStatus
       {
-        Params.XboxConsole.DebugTarget.DisconnectAsDebugger();
-      }
-      catch
-      {
-        return false;
+         get;
+         private set;
       }
 
-      return true;
-    }
+      public ConnectionStatus Connect(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore)
+      {
+         if (exceptionLevel != ExceptionLevel.Ignore) {
+            throw new Exception("ExceptionLevel 'Fatal' is not supported.");
+         }
 
-    public async Task<bool> DisconnectAsync()
-    {
-      return await Task.Run(() => this.Disconnect());
-    }
+         this.ConnectionStatus = ConnectionStatus.Unavailable;
 
-    public ConnectionStatus GetConnectionStatus()
-    {
-      if (this.ConnectionStatus != ConnectionStatus.Connected) return ConnectionStatus.Unavailable;
+         if (Params.XboxManager != null)
+         {
+            this.ConnectionStatus = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
+              ConnectionStatus.Connected : ConnectionStatus.Unavailable;
+         }
+         else
+         {
+            Guid clsid = new Guid(GUID);
+            Params.XboxManager = (XboxManager)Activator.CreateInstance(Type.GetTypeFromCLSID(clsid));
+            Params.XboxConsole = Params.XboxManager.OpenConsole(Params.XboxManager.DefaultConsole);
 
-      return Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
-          ConnectionStatus.Connected : ConnectionStatus.Disconnected;
-    }
+            if (Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName))
+            {
+               Params.XboxConsole.DebugTarget.ConnectAsDebugger(NAME, XboxDebugConnectFlags.Force);
+               this.ConnectionStatus = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
+                 ConnectionStatus.Connected : ConnectionStatus.Unavailable;
+            }
+         }
 
-    public async Task<ConnectionStatus> GetConnectionStatusAsync()
-    {
-      return await Task.Run(() => this.GetConnectionStatus());
-    }
+         return this.ConnectionStatus;
+      }
 
-    public byte[] GetMemory(uint address, uint length)
-    {
-      if (this.ConnectionStatus != ConnectionStatus.Connected) return new byte[0];
+      public async Task<ConnectionStatus> ConnectAsync(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore)
+      {
+         if (exceptionLevel != ExceptionLevel.Ignore) {
+            throw new Exception("ExceptionLevel 'Fatal' is not supported.");
+         }
 
-      byte[] bytes = new byte[length];
-      Params.XboxConsole.DebugTarget.GetMemory(address, length, bytes, out uint bytesRead);
-      return bytes;
-    }
+         return await Task.Run(() => this.Connect());
+      }
 
-    public async Task<byte[]> GetMemoryAsync(uint address, uint length)
-    {
-      return await Task.Run(() => this.GetMemory(address, length));
-    }
+      public bool Disconnect()
+      {
+         if (this.ConnectionStatus != ConnectionStatus.Connected) return false;
 
-    public bool SetMemory(uint address, byte[] bytes)
-    {
-      if (this.ConnectionStatus != ConnectionStatus.Connected) return false;
+         try
+         {
+            Params.XboxConsole.DebugTarget.DisconnectAsDebugger();
+         }
+         catch
+         {
+            return false;
+         }
 
-      Params.XboxConsole.DebugTarget.SetMemory(address, (uint)bytes.Length, bytes, out uint bytesWritten);
-      return true;
-    }
+         return true;
+      }
 
-    public async Task<bool> SetMemoryAsync(uint address, byte[] bytes)
-    {
-      return await Task.Run(() => this.SetMemory(address, bytes));
-    }
+      public async Task<bool> DisconnectAsync()
+      {
+         return await Task.Run(() => this.Disconnect());
+      }
 
-    /// <summary>
-    /// Not Supported.
-    /// </summary>
-    /// <returns>NotImplementedException</returns>
-    [NotSupported]
-    public PowerState GetPowerState()
-    {
-      throw new NotImplementedException();
-    }
+      public ConnectionStatus GetConnectionStatus()
+      {
+         if (this.ConnectionStatus != ConnectionStatus.Connected) return ConnectionStatus.Unavailable;
 
-    /// <summary>
-    /// Not Supported.
-    /// </summary>
-    /// <returns>NotImplementedException</returns>
-    [NotSupported]
-    public Task<PowerState> GetPowerStateAsync()
-    {
-      throw new NotImplementedException();
-    }
+         return Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
+             ConnectionStatus.Connected : ConnectionStatus.Disconnected;
+      }
 
-    /// <summary>
-    /// Not Supported.
-    /// </summary>
-    /// <returns>NotImplementedException</returns>
-    [NotSupported]
-    public bool ProcessAttach()
-    {
-      throw new NotImplementedException();
-    }
+      public async Task<ConnectionStatus> GetConnectionStatusAsync()
+      {
+         return await Task.Run(() => this.GetConnectionStatus());
+      }
 
-    /// <summary>
-    /// Not Supported.
-    /// </summary>
-    /// <returns>NotImplementedException</returns>
-    [NotSupported]
-    public Task<bool> ProcessAttachAsync()
-    {
-      throw new NotImplementedException();
-    }
+      public byte[] GetMemory(uint address, uint length)
+      {
+         if (this.ConnectionStatus != ConnectionStatus.Connected) return new byte[0];
 
-    /// <summary>
-    /// Not Supported.
-    /// </summary>
-    /// <returns>NotImplementedException</returns>
-    [NotSupported]
-    public bool SetPowerState(PowerState state, bool isForce = false)
-    {
-      throw new NotImplementedException();
-    }
+         byte[] bytes = new byte[length];
+         Params.XboxConsole.DebugTarget.GetMemory(address, length, bytes, out uint bytesRead);
+         return bytes;
+      }
 
-    /// <summary>
-    /// Not Supported.
-    /// </summary>
-    /// <returns>NotImplementedException</returns>
-    [NotSupported]
-    public Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false)
-    {
-      throw new NotImplementedException();
-    }
-  }
+      public async Task<byte[]> GetMemoryAsync(uint address, uint length)
+      {
+         return await Task.Run(() => this.GetMemory(address, length));
+      }
+
+      public bool SetMemory(uint address, byte[] bytes)
+      {
+         if (this.ConnectionStatus != ConnectionStatus.Connected) return false;
+
+         Params.XboxConsole.DebugTarget.SetMemory(address, (uint)bytes.Length, bytes, out uint bytesWritten);
+         return true;
+      }
+
+      public async Task<bool> SetMemoryAsync(uint address, byte[] bytes)
+      {
+         return await Task.Run(() => this.SetMemory(address, bytes));
+      }
+
+      /// <summary>
+      /// Not Supported.
+      /// </summary>
+      /// <returns>NotImplementedException</returns>
+      [NotSupported]
+      public PowerState GetPowerState()
+      {
+         throw new NotImplementedException();
+      }
+
+      /// <summary>
+      /// Not Supported.
+      /// </summary>
+      /// <returns>NotImplementedException</returns>
+      [NotSupported]
+      public Task<PowerState> GetPowerStateAsync()
+      {
+         throw new NotImplementedException();
+      }
+
+      /// <summary>
+      /// Not Supported.
+      /// </summary>
+      /// <returns>NotImplementedException</returns>
+      [NotSupported]
+      public bool ProcessAttach(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore)
+      {
+         throw new NotImplementedException();
+      }
+
+      /// <summary>
+      /// Not Supported.
+      /// </summary>
+      /// <returns>NotImplementedException</returns>
+      [NotSupported]
+      public Task<bool> ProcessAttachAsync(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore)
+      {
+         throw new NotImplementedException();
+      }
+
+      /// <summary>
+      /// Not Supported.
+      /// </summary>
+      /// <returns>NotImplementedException</returns>
+      [NotSupported]
+      public bool SetPowerState(PowerState state, bool isForce = false)
+      {
+         throw new NotImplementedException();
+      }
+
+      /// <summary>
+      /// Not Supported.
+      /// </summary>
+      /// <returns>NotImplementedException</returns>
+      [NotSupported]
+      public Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false)
+      {
+         throw new NotImplementedException();
+      }
+   }
 }

@@ -38,10 +38,11 @@
       // darkButtonConnect
       // 
       this.darkButtonConnect.Enabled = false;
-      this.darkButtonConnect.Location = new System.Drawing.Point(101, 169);
+      this.darkButtonConnect.Location = new System.Drawing.Point(61, 113);
+      this.darkButtonConnect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.darkButtonConnect.Name = "darkButtonConnect";
-      this.darkButtonConnect.Padding = new System.Windows.Forms.Padding(5);
-      this.darkButtonConnect.Size = new System.Drawing.Size(223, 45);
+      this.darkButtonConnect.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+      this.darkButtonConnect.Size = new System.Drawing.Size(134, 30);
       this.darkButtonConnect.TabIndex = 4;
       this.darkButtonConnect.Text = "Connect";
       this.darkButtonConnect.Click += new System.EventHandler(this.darkButtonConnect_Click);
@@ -53,19 +54,21 @@
       this.darkComboBoxDevkit.Items.AddRange(new object[] {
             "PS3",
             "Xbox360"});
-      this.darkComboBoxDevkit.Location = new System.Drawing.Point(101, 94);
+      this.darkComboBoxDevkit.Location = new System.Drawing.Point(61, 63);
+      this.darkComboBoxDevkit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.darkComboBoxDevkit.Name = "darkComboBoxDevkit";
-      this.darkComboBoxDevkit.Size = new System.Drawing.Size(452, 26);
+      this.darkComboBoxDevkit.Size = new System.Drawing.Size(273, 20);
       this.darkComboBoxDevkit.TabIndex = 6;
       this.darkComboBoxDevkit.SelectedIndexChanged += new System.EventHandler(this.darkComboBoxDevkit_SelectedIndexChanged);
       // 
       // darkButtonAttach
       // 
       this.darkButtonAttach.Enabled = false;
-      this.darkButtonAttach.Location = new System.Drawing.Point(330, 169);
+      this.darkButtonAttach.Location = new System.Drawing.Point(198, 113);
+      this.darkButtonAttach.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.darkButtonAttach.Name = "darkButtonAttach";
-      this.darkButtonAttach.Padding = new System.Windows.Forms.Padding(5);
-      this.darkButtonAttach.Size = new System.Drawing.Size(223, 45);
+      this.darkButtonAttach.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+      this.darkButtonAttach.Size = new System.Drawing.Size(134, 30);
       this.darkButtonAttach.TabIndex = 7;
       this.darkButtonAttach.Text = "Process Attach";
       this.darkButtonAttach.Click += new System.EventHandler(this.darkButtonAttach_Click);
@@ -76,19 +79,22 @@
       this.darkGroupBox1.Controls.Add(this.darkComboBoxDevkit);
       this.darkGroupBox1.Controls.Add(this.darkButtonAttach);
       this.darkGroupBox1.Controls.Add(this.darkButtonConnect);
-      this.darkGroupBox1.Location = new System.Drawing.Point(12, 12);
+      this.darkGroupBox1.Location = new System.Drawing.Point(7, 8);
+      this.darkGroupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.darkGroupBox1.Name = "darkGroupBox1";
-      this.darkGroupBox1.Size = new System.Drawing.Size(654, 296);
+      this.darkGroupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.darkGroupBox1.Size = new System.Drawing.Size(392, 197);
       this.darkGroupBox1.TabIndex = 8;
       this.darkGroupBox1.TabStop = false;
       this.darkGroupBox1.Text = "Devkit :";
       // 
       // Main
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(678, 320);
+      this.ClientSize = new System.Drawing.Size(407, 213);
       this.Controls.Add(this.darkGroupBox1);
+      this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.MaximizeBox = false;
       this.Name = "Main";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
