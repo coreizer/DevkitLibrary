@@ -112,13 +112,19 @@ namespace DevkitLibrary.Devkits
          return await Task.Run(() => this.GetConnectionStatus());
       }
 
+      /// <summary>
+      /// TODO: NULL
+      /// </summary>
+      /// <param name="address"></param>
+      /// <param name="length"></param>
+      /// <returns></returns>
       public byte[] GetMemory(uint address, uint length)
       {
-         if (this.ConnectionStatus != ConnectionStatus.Connected) return null;
+         if (this.ConnectionStatus != ConnectionStatus.Connected) return new byte[1] { 0x00 };
 
          byte[] bytes = new byte[length];
          PS3TMAPI.SNRESULT result = PS3TMAPI.ProcessGetMemory(this.TargetIndex, UNIT, Params.processID, 0, address, ref bytes);
-         return (PS3TMAPI.SUCCEEDED(result)) ? bytes : null;
+         return (PS3TMAPI.SUCCEEDED(result)) ? bytes : new byte[1] { 0x00 };
       }
 
       public async Task<byte[]> GetMemoryAsync(uint address, uint length)
