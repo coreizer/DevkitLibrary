@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using DevkitLibrary.Enums;
 using System;
 using System.Threading.Tasks;
+using DevkitLibrary.Enums;
 using XDevkit;
 
 namespace DevkitLibrary.Devkits
@@ -43,27 +43,20 @@ namespace DevkitLibrary.Devkits
          private set;
       }
 
-      public ConnectionStatus Connect(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore)
+      public ConnectionStatus Connect()
       {
-         if (exceptionLevel != ExceptionLevel.Ignore) {
-            throw new Exception("ExceptionLevel 'Fatal' is not supported.");
-         }
-
          this.ConnectionStatus = ConnectionStatus.Unavailable;
 
-         if (Params.XboxManager != null)
-         {
+         if (Params.XboxManager != null) {
             this.ConnectionStatus = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
               ConnectionStatus.Connected : ConnectionStatus.Unavailable;
          }
-         else
-         {
+         else {
             Guid clsid = new Guid(GUID);
             Params.XboxManager = (XboxManager)Activator.CreateInstance(Type.GetTypeFromCLSID(clsid));
             Params.XboxConsole = Params.XboxManager.OpenConsole(Params.XboxManager.DefaultConsole);
 
-            if (Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName))
-            {
+            if (Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName)) {
                Params.XboxConsole.DebugTarget.ConnectAsDebugger(NAME, XboxDebugConnectFlags.Force);
                this.ConnectionStatus = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
                  ConnectionStatus.Connected : ConnectionStatus.Unavailable;
@@ -73,25 +66,19 @@ namespace DevkitLibrary.Devkits
          return this.ConnectionStatus;
       }
 
-      public async Task<ConnectionStatus> ConnectAsync(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore)
+      public async Task<ConnectionStatus> ConnectAsync()
       {
-         if (exceptionLevel != ExceptionLevel.Ignore) {
-            throw new Exception("ExceptionLevel 'Fatal' is not supported.");
-         }
-
-         return await Task.Run(() => this.Connect());
+         return await Task.Run(() => this.Connect()).ConfigureAwait(false);
       }
 
       public bool Disconnect()
       {
          if (this.ConnectionStatus != ConnectionStatus.Connected) return false;
 
-         try
-         {
+         try {
             Params.XboxConsole.DebugTarget.DisconnectAsDebugger();
          }
-         catch
-         {
+         catch {
             return false;
          }
 
@@ -168,7 +155,7 @@ namespace DevkitLibrary.Devkits
       /// </summary>
       /// <returns>NotImplementedException</returns>
       [NotSupported]
-      public bool ProcessAttach(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore)
+      public bool ProcessAttach()
       {
          throw new NotImplementedException();
       }
@@ -178,7 +165,7 @@ namespace DevkitLibrary.Devkits
       /// </summary>
       /// <returns>NotImplementedException</returns>
       [NotSupported]
-      public Task<bool> ProcessAttachAsync(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore)
+      public Task<bool> ProcessAttachAsync()
       {
          throw new NotImplementedException();
       }

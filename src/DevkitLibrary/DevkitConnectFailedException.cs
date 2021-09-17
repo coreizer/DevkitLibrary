@@ -2,12 +2,14 @@
 
 namespace DevkitLibrary
 {
-   public class DevkitConnectFailedException : Exception 
+   public class DevkitConnectFailedException : Exception
    {
-      public DevkitConnectFailedException() { }
+      public DevkitConnectFailedException()
+      {
+      }
 
       public DevkitConnectFailedException(string message)
-         :base(message)
+         : base(message)
       {
 
       }
@@ -15,7 +17,6 @@ namespace DevkitLibrary
       public DevkitConnectFailedException(string message, Exception inner)
          : base(message, inner)
       {
-
       }
    }
 }

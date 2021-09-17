@@ -33,8 +33,9 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ps3tmapi_net">
-      <HintPath>..\..\..\..\..\Library\ps3tmapi_net.dll</HintPath>
+    <Reference Include="ps3tmapi_net, Version=420.1.14.7, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Libraryfiles\ps3tmapi_net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,7 +46,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="xdevkit">
-      <HintPath>..\..\..\..\LibraryData\xdevkit.dll</HintPath>
+      <HintPath>..\..\..\..\Libraryfiles\xdevkit.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
@@ -54,7 +55,6 @@
     <Compile Include="Devkits\IDevkit.cs" />
     <Compile Include="Devkits\NotSupportedAttribute.cs" />
     <Compile Include="Enums\DevkitTarget.cs" />
-    <Compile Include="Enums\ExceptionLevel.cs" />
     <Compile Include="Enums\PowerState.cs" />
     <Compile Include="Devkits\PS3.cs" />
     <Compile Include="Enums\ConnectionStatus.cs" />

@@ -15,10 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using DarkUI.Forms;
+
+using DevkitLibrary.Enums;
+
 using System;
 using System.Windows.Forms;
-using DarkUI.Forms;
-using DevkitLibrary.Enums;
 
 namespace DevkitLibrary.Demo
 {
@@ -33,8 +35,7 @@ namespace DevkitLibrary.Demo
 
       private void darkComboBoxDevkit_SelectedIndexChanged(object sender, EventArgs e)
       {
-         switch ((sender as ComboBox).Text.ToUpper())
-         {
+         switch ((sender as ComboBox).Text.ToUpper()) {
             case "PS3":
                this.darkButtonAttach.Text = "Process Attach";
                this.devkits.SetTarget(DevkitTarget.PS3, 0);
@@ -54,12 +55,10 @@ namespace DevkitLibrary.Demo
          this.darkButtonConnect.Enabled = false;
          this.darkComboBoxDevkit.Enabled = false;
 
-         try
-         {
+         try {
             ConnectionStatus status = await this.devkits.ConnectTargetAsync();
 
-            switch (status)
-            {
+            switch (status) {
                case ConnectionStatus.Connected:
                   if (this.devkits.DevkitTarget == DevkitTarget.PS3) this.darkButtonAttach.Enabled = true;
 
@@ -74,43 +73,36 @@ namespace DevkitLibrary.Demo
                   break;
             }
          }
-         catch (Exception ex)
-         {
+         catch (Exception ex) {
             DarkMessageBox.ShowError(ex.Message, $"Error - {Application.ProductName}", DarkDialogButton.Ok);
             this.darkButtonConnect.Enabled = true;
          }
-         finally
-         {
+         finally {
             this.darkComboBoxDevkit.Enabled = true;
          }
       }
 
       private async void darkButtonAttach_Click(object sender, EventArgs e)
       {
-         try
-         {
+         try {
             this.darkButtonAttach.Enabled = false;
+            bool result = await this.devkits.ProcessAttachAsync();
 
-            bool result = await this.devkits.ProcessAttachAsync(ExceptionLevel.Ignore);
-            if (result)
-            {
+            if (result) {
                DarkMessageBox.ShowInformation("Current game process is attached successfully !", Application.ProductName, DarkDialogButton.Ok);
             }
             else {
                DarkMessageBox.ShowWarning($"No game process found", Application.ProductName, DarkDialogButton.Ok);
             }
          }
-         catch (DevKitProcessAttachFailedException ex)
-         {
+         catch (DevKitProcessAttachFailedException ex) {
             DarkMessageBox.ShowWarning($"No game process found\r\n{ex.Message}", Application.ProductName, DarkDialogButton.Ok);
          }
-         catch (Exception ex)
-         {
+         catch (Exception ex) {
             DarkMessageBox.ShowError(ex.Message, $"Error - {Application.ProductName}", DarkDialogButton.Ok);
          }
 
-         finally
-         {
+         finally {
             this.darkButtonAttach.Enabled = true;
          }
       }

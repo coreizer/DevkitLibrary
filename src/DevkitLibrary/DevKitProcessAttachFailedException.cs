@@ -4,7 +4,9 @@ namespace DevkitLibrary
 {
    public class DevKitProcessAttachFailedException : Exception
    {
-      public DevKitProcessAttachFailedException() { }
+      public DevKitProcessAttachFailedException()
+      {
+      }
 
       public DevKitProcessAttachFailedException(string message)
           : base(message)

@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
 using DevkitLibrary.Devkits;
 using DevkitLibrary.Enums;
-using System.Threading.Tasks;
 
 namespace DevkitLibrary
 {
@@ -29,24 +29,21 @@ namespace DevkitLibrary
 
       public PS3 PS3
       {
-         get
-         {
+         get {
             return (PS3)this.Devkit;
          }
       }
 
       public Xbox360 Xbox360
       {
-         get
-         {
+         get {
             return (Xbox360)this.Devkit;
          }
       }
 
       public Extension Extension
       {
-         get
-         {
+         get {
             return new Extension(this.Devkit);
          }
       }
@@ -60,8 +57,7 @@ namespace DevkitLibrary
 
       internal static IDevkit CreateDevkit(DevkitTarget target, int targetIndex)
       {
-         switch (target)
-         {
+         switch (target) {
             case DevkitTarget.PS3:
                return new PS3(targetIndex);
 
@@ -99,7 +95,7 @@ namespace DevkitLibrary
 
       public async Task<ConnectionStatus> GetConnectionStatusAsync()
       {
-         return await this.Devkit.GetConnectionStatusAsync();
+         return await this.Devkit.GetConnectionStatusAsync().ConfigureAwait(false);
       }
 
       public byte[] GetMemory(uint address, uint length)
@@ -122,14 +118,14 @@ namespace DevkitLibrary
          return await this.Devkit.GetPowerStateAsync();
       }
 
-      public bool ProcessAttach(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore)
+      public bool ProcessAttach()
       {
-         return this.Devkit.ProcessAttach(exceptionLevel);
+         return this.Devkit.ProcessAttach();
       }
 
-      public async Task<bool> ProcessAttachAsync(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore)
+      public async Task<bool> ProcessAttachAsync()
       {
-         return await this.Devkit.ProcessAttachAsync(exceptionLevel);
+         return await this.Devkit.ProcessAttachAsync();
       }
 
       public bool SetMemory(uint address, byte[] bytes)

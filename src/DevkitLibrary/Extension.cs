@@ -15,10 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using DevkitLibrary.Devkits;
 using System;
 using System.Linq;
 using System.Text;
+using DevkitLibrary.Devkits;
 
 namespace DevkitLibrary
 {
@@ -56,8 +56,7 @@ namespace DevkitLibrary
       public float[] ReadFloats(uint address, int length = 3)
       {
          float[] floats = new float[length >= 0 ? length : 3];
-         for (int i = 0; i < length; i++)
-         {
+         for (int i = 0; i < length; i++) {
             byte[] bytes = this.devkit.GetMemory(address + ((uint)i * 4), 4);
             Array.Reverse(bytes, 0, bytes.Length);
             floats[i] = BitConverter.ToSingle(bytes, 0);
@@ -126,8 +125,7 @@ namespace DevkitLibrary
          uint blocksize = 40;
          string text = "";
 
-         while (!text.Contains('\0'))
-         {
+         while (!text.Contains('\0')) {
             byte[] bytes = this.devkit.GetMemory(address + (uint)index, blocksize);
             text += Encoding.UTF8.GetString(bytes);
             index += blocksize;
@@ -177,8 +175,7 @@ namespace DevkitLibrary
       {
          uint index = 0;
 
-         while (index <= length)
-         {
+         while (index <= length) {
             this.WriteByte(address + index, value);
             index += 1;
          }
@@ -187,8 +184,7 @@ namespace DevkitLibrary
       {
          uint index = 0;
 
-         while (index <= length)
-         {
+         while (index <= length) {
             this.WriteBytes(address + index, value);
             index += 1;
          }
@@ -214,8 +210,7 @@ namespace DevkitLibrary
       {
          byte[] bytes = new byte[4];
 
-         for (int i = 0; i < value.Length; i++)
-         {
+         for (int i = 0; i < value.Length; i++) {
             BitConverter.GetBytes(value[i]).CopyTo(bytes, 0);
             Array.Reverse(bytes, 0, bytes.Length);
             this.devkit.SetMemory(address + (uint)i * 4, bytes);

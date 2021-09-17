@@ -48,7 +48,9 @@ D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\DarkUI.dll
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\DevkitLibrary.dll
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\PS3TMAPI_NET.dll
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\DevkitLibrary.pdb
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csprojAssemblyReference.cache
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.CopyComplete
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.exe
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.pdb
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.AssemblyReference.cache
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.SuggestedBindingRedirects.cache
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\System.dll

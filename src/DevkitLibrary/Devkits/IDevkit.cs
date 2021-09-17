@@ -15,28 +15,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using DevkitLibrary.Enums;
 using System.Threading.Tasks;
+using DevkitLibrary.Enums;
 
 namespace DevkitLibrary.Devkits
 {
    public interface IDevkit
    {
-      int TargetIndex { get; }
+      int TargetIndex
+      {
+         get;
+      }
 
-      ConnectionStatus ConnectionStatus { get; }
+      ConnectionStatus ConnectionStatus
+      {
+         get;
+      }
 
-      ConnectionStatus Connect(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore);
+      ConnectionStatus Connect();
 
-      Task<ConnectionStatus> ConnectAsync(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore);
+      Task<ConnectionStatus> ConnectAsync();
 
       bool Disconnect();
 
       Task<bool> DisconnectAsync();
 
-      bool ProcessAttach(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore);
+      bool ProcessAttach();
 
-      Task<bool> ProcessAttachAsync(ExceptionLevel exceptionLevel = ExceptionLevel.Ignore);
+      Task<bool> ProcessAttachAsync();
 
       bool SetMemory(uint address, byte[] bytes);
 
