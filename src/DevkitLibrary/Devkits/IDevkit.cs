@@ -40,9 +40,9 @@ namespace DevkitLibrary.Devkits
 
       Task<bool> DisconnectAsync();
 
-      bool ProcessAttach();
+      bool AttachProcess();
 
-      Task<bool> ProcessAttachAsync();
+      Task<bool> AttachProcessAsync();
 
       bool SetMemory(uint address, byte[] bytes);
 

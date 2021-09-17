@@ -86,7 +86,7 @@ namespace DevkitLibrary.Demo
       {
          try {
             this.darkButtonAttach.Enabled = false;
-            bool result = await this.devkits.ProcessAttachAsync();
+            bool result = await this.devkits.AttachProcessAsync();
 
             if (result) {
                DarkMessageBox.ShowInformation("Current game process is attached successfully !", Application.ProductName, DarkDialogButton.Ok);
@@ -95,7 +95,7 @@ namespace DevkitLibrary.Demo
                DarkMessageBox.ShowWarning($"No game process found", Application.ProductName, DarkDialogButton.Ok);
             }
          }
-         catch (DevKitProcessAttachFailedException ex) {
+         catch (DevKitAttachProcessFailedException ex) {
             DarkMessageBox.ShowWarning($"No game process found\r\n{ex.Message}", Application.ProductName, DarkDialogButton.Ok);
          }
          catch (Exception ex) {

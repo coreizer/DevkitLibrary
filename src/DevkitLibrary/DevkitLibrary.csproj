@@ -60,7 +60,7 @@
     <Compile Include="Enums\ConnectionStatus.cs" />
     <Compile Include="Enums\Endian.cs" />
     <Compile Include="Extension.cs" />
-    <Compile Include="DevKitProcessAttachFailedException.cs" />
+    <Compile Include="DevKitAttachProcessFailedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Devkits.cs" />
     <Compile Include="Devkits\Xbox360.cs" />

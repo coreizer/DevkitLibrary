@@ -120,12 +120,12 @@ namespace DevkitLibrary
 
       public bool ProcessAttach()
       {
-         return this.Devkit.ProcessAttach();
+         return this.Devkit.AttachProcess();
       }
 
-      public async Task<bool> ProcessAttachAsync()
+      public async Task<bool> AttachProcessAsync()
       {
-         return await this.Devkit.ProcessAttachAsync();
+         return await this.Devkit.AttachProcessAsync();
       }
 
       public bool SetMemory(uint address, byte[] bytes)

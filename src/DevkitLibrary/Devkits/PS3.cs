@@ -25,9 +25,9 @@ namespace DevkitLibrary.Devkits
    {
       internal class Params
       {
-         public static string usage;
-         public static uint processID;
-         public static uint[] processIDs;
+         public static string usage = "";
+         public static uint processID = 0;
+         public static uint[] processIDs = new uint[0];
       }
 
       private const PS3TMAPI.UnitType UNIT = PS3TMAPI.UnitType.PPU;
@@ -66,7 +66,7 @@ namespace DevkitLibrary.Devkits
 
       public async Task<ConnectionStatus> ConnectAsync()
       {
-         PS3TMAPI.SNRESULT result = PS3TMAPI.InitTargetComms(); // is not compatible
+         PS3TMAPI.SNRESULT result = PS3TMAPI.InitTargetComms();
          if (PS3TMAPI.SUCCEEDED(result)) {
             return await Task.Run(() => this.Connect()).ConfigureAwait(false);
          }
@@ -139,7 +139,7 @@ namespace DevkitLibrary.Devkits
          return await Task.Run(() => this.GetPowerState()).ConfigureAwait(false);
       }
 
-      public bool ProcessAttach()
+      public bool AttachProcess()
       {
          if (this.ConnectionStatus != ConnectionStatus.Connected) {
             return false;
@@ -147,7 +147,7 @@ namespace DevkitLibrary.Devkits
 
          PS3TMAPI.SNRESULT result = PS3TMAPI.GetProcessList(this.TargetIndex, out Params.processIDs);
          if (PS3TMAPI.FAILED(result)) {
-            throw new DevKitProcessAttachFailedException();
+            throw new DevKitAttachProcessFailedException($"{Enum.GetName(typeof(PS3TMAPI.SNRESULT), result)}");
          }
 
          if (Params.processIDs.Length > 0) {
@@ -161,9 +161,13 @@ namespace DevkitLibrary.Devkits
          return false;
       }
 
-      public async Task<bool> ProcessAttachAsync()
+      public async Task<bool> AttachProcessAsync()
       {
-         return await Task.Run(() => this.ProcessAttach()).ConfigureAwait(false);
+         return await Task.Run(() =>
+         {
+            PS3TMAPI.InitTargetComms();
+            return this.AttachProcess();
+         }).ConfigureAwait(false); ;
       }
 
       public bool SetMemory(uint address, byte[] bytes)

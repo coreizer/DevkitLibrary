@@ -16,4 +16,4 @@ D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\DevkitLibrary.pdb
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.dll
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.pdb
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\ps3tmapi_net.dll
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.AssemblyReference.cache
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.CopyComplete

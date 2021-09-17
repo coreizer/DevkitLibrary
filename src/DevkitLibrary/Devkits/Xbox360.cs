@@ -155,7 +155,7 @@ namespace DevkitLibrary.Devkits
       /// </summary>
       /// <returns>NotImplementedException</returns>
       [NotSupported]
-      public bool ProcessAttach()
+      public bool AttachProcess()
       {
          throw new NotImplementedException();
       }
@@ -165,7 +165,7 @@ namespace DevkitLibrary.Devkits
       /// </summary>
       /// <returns>NotImplementedException</returns>
       [NotSupported]
-      public Task<bool> ProcessAttachAsync()
+      public Task<bool> AttachProcessAsync()
       {
          throw new NotImplementedException();
       }
