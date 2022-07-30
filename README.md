@@ -19,6 +19,9 @@ if (status == ConnectionStatus.Connected) {
 }
 ```
 
+## Screenshot
+![demo-image](./docs/demo.png)
+
 ## Stay In Touch
  - [Website coreizer.dev](https://www.coreizer.dev)
  - [Twitter](https://www.twitter.com/coreizer)
