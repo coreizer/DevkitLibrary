@@ -1,9 +1,9 @@
 # DevkitLibrary
 純正の開発キットを使用して、簡単に接続する機能を提供します。
 
-使用例:
+## Usage
+Connection example:
 ```
-
 // Xbox 360
 DevKits devkits = new DevKits();
 devkits.SetTarget(DevkitTarget.Xbox360, 0);
@@ -12,11 +12,19 @@ devkits.SetTarget(DevkitTarget.Xbox360, 0);
 DevKits devKits = new  DevKits();
 devkits.SetTarget(DevkitTarget.PS3, 0);
 
-ConnectState state = await devkits.ConnectTargetAsync();
+// Connect to target
+ConnectionStatus status = await devkits.ConnectTargetAsync();
+if (status == ConnectionStatus.Connected) {
+  MessageBox.Show("Connected !");
+}
 ```
 
-### 作成者
-* **Coreizer**
+## Stay In Touch
+ - [Website coreizer.dev](https://www.coreizer.dev)
+ - [Twitter](https://www.twitter.com/coreizer)
 
-### License (ライセンス)
-[Public License v3.0](LICENSE)
+## Author
+coreizer
+
+## License
+[GPL v3 licensed.](LICENSE)
