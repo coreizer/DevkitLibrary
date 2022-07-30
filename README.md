@@ -30,4 +30,4 @@ if (status == ConnectionStatus.Connected) {
 coreizer
 
 ## License
-[GPL v3 licensed.](LICENSE)
+[GPL v3.0 licensed.](LICENSE)
