@@ -5,22 +5,22 @@
 Connection example:
 ```
 // Xbox 360
-DevKits devkits = new DevKits();
-devkits.SetTarget(DevkitTarget.Xbox360, 0);
+DevKitClient client = new DevKitClient();
+client.SetTarget(DevkitTarget.Xbox360, 0);
 
 // PS3
-DevKits devKits = new  DevKits();
-devkits.SetTarget(DevkitTarget.PS3, 0);
+DevKitClient client = new  DevKitClient();
+client.SetTarget(DevkitTarget.PS3, 0);
 
 // Connect to target
-ConnectionStatus status = await devkits.ConnectTargetAsync();
+ConnectionStatus status = await client.ConnectTargetAsync();
 if (status == ConnectionStatus.Connected) {
   MessageBox.Show("Connected !");
 }
 ```
 
 ## Screenshot
-![demo-image](./docs/demo.png)
+![demo-image](./docs/demo-app.png)
 
 ## Stay In Touch
  - [Website coreizer.dev](https://www.coreizer.dev)
