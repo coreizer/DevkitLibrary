@@ -6,11 +6,11 @@ Connection example:
 ```
 // Xbox 360
 DevKitClient client = new DevKitClient();
-client.SetTarget(DevkitTarget.Xbox360, 0);
+client.SetTarget(DevkitType.Xbox360, 0);
 
 // PS3
 DevKitClient client = new  DevKitClient();
-client.SetTarget(DevkitTarget.PS3, 0);
+client.SetTarget(DevkitType.PS3, 0);
 
 // Connect to target
 ConnectionStatus status = await client.ConnectTargetAsync();
