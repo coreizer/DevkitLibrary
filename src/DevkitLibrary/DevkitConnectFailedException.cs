@@ -19,10 +19,10 @@
 
 #endregion
 
-using System;
-
 namespace DevkitLibrary
 {
+   using System;
+
    public class DevkitConnectFailedException : Exception
    {
       public DevkitConnectFailedException()

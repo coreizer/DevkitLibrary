@@ -19,12 +19,12 @@
 
 #endregion
 
-using System;
-using System.Threading.Tasks;
-using DevkitLibrary.Enums;
-
 namespace DevkitLibrary.Devkits
 {
+   using System;
+   using System.Threading.Tasks;
+   using DevkitLibrary.Enums;
+
    public class PS3 : IDevkit
    {
       internal class Params
@@ -36,16 +36,9 @@ namespace DevkitLibrary.Devkits
 
       private const PS3TMAPI.UnitType UNIT = PS3TMAPI.UnitType.PPU;
 
-      public int TargetIndex
-      {
-         get;
-      }
+      public int TargetIndex { get; }
 
-      public ConnectionStatus ConnectionStatus
-      {
-         get;
-         set;
-      }
+      public ConnectionStatus ConnectionStatus { get; set; }
 
       public PS3(int targetIndex)
       {

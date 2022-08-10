@@ -19,18 +19,16 @@
 
 #endregion
 
-using DarkUI.Forms;
-
-using DevkitLibrary.Enums;
-
-using System;
-using System.Windows.Forms;
-
 namespace DevkitLibrary.Demo
 {
+   using System;
+   using System.Windows.Forms;
+   using DarkUI.Forms;
+   using DevkitLibrary.Enums;
+
    public partial class Main : DarkForm
    {
-      private DevKits devkits = new DevKits();
+      private DevKitClient client = new DevKitClient();
 
       public Main()
       {
@@ -42,12 +40,12 @@ namespace DevkitLibrary.Demo
          switch ((sender as ComboBox).Text.ToUpper()) {
             case "PS3":
                this.darkButtonAttach.Text = "Process Attach";
-               this.devkits.SetTarget(DevkitTarget.PS3, 0);
+               this.client.SetTarget(DevkitType.PS3, 0);
                break;
 
             case "XBOX360":
                this.darkButtonAttach.Text = "Not Supported";
-               this.devkits.SetTarget(DevkitTarget.Xbox360, 0);
+               this.client.SetTarget(DevkitType.Xbox360, 0);
                break;
          }
 
@@ -60,11 +58,11 @@ namespace DevkitLibrary.Demo
          this.darkComboBoxDevkit.Enabled = false;
 
          try {
-            ConnectionStatus status = await this.devkits.ConnectTargetAsync();
+            ConnectionStatus status = await this.client.ConnectTargetAsync();
 
             switch (status) {
                case ConnectionStatus.Connected:
-                  if (this.devkits.DevkitTarget == DevkitTarget.PS3) {
+                  if (this.client.Type == DevkitType.PS3) {
                      this.darkButtonAttach.Enabled = true;
                   }
 
@@ -92,7 +90,7 @@ namespace DevkitLibrary.Demo
       {
          try {
             this.darkButtonAttach.Enabled = false;
-            bool successfully = await this.devkits.AttachProcessAsync();
+            bool successfully = await this.client.AttachProcessAsync();
             if (successfully) {
                DarkMessageBox.ShowInformation("Current game process is attached successfully !", Application.ProductName, DarkDialogButton.Ok);
             }

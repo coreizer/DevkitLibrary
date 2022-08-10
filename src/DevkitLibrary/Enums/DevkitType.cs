@@ -21,7 +21,7 @@
 
 namespace DevkitLibrary.Enums
 {
-   public enum DevkitTarget
+   public enum DevkitType
    {
       PS3,
       Xbox360

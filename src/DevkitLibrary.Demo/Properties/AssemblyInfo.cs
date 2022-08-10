@@ -30,7 +30,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("DevkitLibrary.Demo")]
-[assembly: AssemblyCopyright("© 2020 coreizer.")]
+[assembly: AssemblyCopyright("© 2020-2022 coreizer.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

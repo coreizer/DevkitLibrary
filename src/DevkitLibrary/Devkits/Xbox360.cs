@@ -19,13 +19,13 @@
 
 #endregion
 
-using System;
-using System.Threading.Tasks;
-using DevkitLibrary.Enums;
-using XDevkit;
-
 namespace DevkitLibrary.Devkits
 {
+   using System;
+   using System.Threading.Tasks;
+   using DevkitLibrary.Enums;
+   using XDevkit;
+
    public class Xbox360 : IDevkit
    {
       internal class Params
@@ -41,11 +41,7 @@ namespace DevkitLibrary.Devkits
 
       public int TargetIndex => throw new NotImplementedException();
 
-      public ConnectionStatus ConnectionStatus
-      {
-         get;
-         private set;
-      }
+      public ConnectionStatus ConnectionStatus { get; private set; }
 
       public ConnectionStatus Connect()
       {

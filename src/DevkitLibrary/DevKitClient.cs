@@ -19,17 +19,17 @@
 
 #endregion
 
-using System.Threading.Tasks;
-using DevkitLibrary.Devkits;
-using DevkitLibrary.Enums;
-
 namespace DevkitLibrary
 {
-   public class DevKits
+   using System.Threading.Tasks;
+   using DevkitLibrary.Devkits;
+   using DevkitLibrary.Enums;
+
+   public class DevKitClient
    {
       public int TargetIndex;
       public IDevkit Devkit;
-      public DevkitTarget DevkitTarget;
+      public DevkitType Type;
 
       public PS3 PS3
       {
@@ -45,27 +45,27 @@ namespace DevkitLibrary
          }
       }
 
-      public Extension Extension
+      public Extensions Extensions
       {
          get {
-            return new Extension(this.Devkit);
+            return new Extensions(this.Devkit);
          }
       }
 
-      public void SetTarget(DevkitTarget target, int targetIndex)
+      public void SetTarget(DevkitType type, int targetIndex)
       {
-         this.DevkitTarget = target;
+         this.Type = type;
          this.TargetIndex = targetIndex;
-         this.Devkit = CreateDevkit(target, targetIndex);
+         this.Devkit = CreateDevkit(type, targetIndex);
       }
 
-      internal static IDevkit CreateDevkit(DevkitTarget target, int targetIndex)
+      internal static IDevkit CreateDevkit(DevkitType type, int targetIndex)
       {
-         switch (target) {
-            case DevkitTarget.PS3:
+         switch (type) {
+            case DevkitType.PS3:
                return new PS3(targetIndex);
 
-            case DevkitTarget.Xbox360:
+            case DevkitType.Xbox360:
                return new Xbox360();
          }
 

@@ -19,18 +19,18 @@
 
 #endregion
 
-using System;
-using System.Linq;
-using System.Text;
-using DevkitLibrary.Devkits;
-
 namespace DevkitLibrary
 {
-   public sealed class Extension
+   using System;
+   using System.Linq;
+   using System.Text;
+   using DevkitLibrary.Devkits;
+
+   public sealed class Extensions
    {
       private readonly IDevkit devkit;
 
-      public Extension(IDevkit devkit)
+      public Extensions(IDevkit devkit)
       {
          this.devkit = devkit;
       }

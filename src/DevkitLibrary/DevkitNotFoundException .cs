@@ -19,10 +19,10 @@
 
 #endregion
 
-using System;
-
 namespace DevkitLibrary
 {
+   using System;
+
    public class DevkitNotFoundException : Exception
    {
       public DevkitNotFoundException()

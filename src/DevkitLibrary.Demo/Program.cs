@@ -19,11 +19,11 @@
 
 #endregion
 
-using System;
-using System.Windows.Forms;
-
 namespace DevkitLibrary.Demo
 {
+   using System;
+   using System.Windows.Forms;
+
    static class Program
    {
       /// <summary>
