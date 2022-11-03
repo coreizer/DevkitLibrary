@@ -94,7 +94,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\app-hero-img%40245x280.png" />
+    <None Include="Resources\app_hero_img_245x280.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

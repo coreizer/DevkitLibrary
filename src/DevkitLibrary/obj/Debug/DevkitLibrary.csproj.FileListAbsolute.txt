@@ -25,3 +25,4 @@ E:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.
 E:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.CopyComplete
 E:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.dll
 E:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.pdb
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.CopyComplete
