@@ -22,7 +22,7 @@
 namespace DevkitLibrary
 {
    using System;
-   
+
    public class DevKitAttachProcessFailedException : Exception
    {
       public DevKitAttachProcessFailedException()

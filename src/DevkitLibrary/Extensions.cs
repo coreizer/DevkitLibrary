@@ -52,16 +52,16 @@ namespace DevkitLibrary
 
       public float ReadFloat(uint address)
       {
-         byte[] bytes = this.devkit.GetMemory(address, 4);
+         var bytes = this.devkit.GetMemory(address, 4);
          Array.Reverse(bytes, 0, bytes.Length);
          return BitConverter.ToSingle(bytes, 0);
       }
 
       public float[] ReadFloats(uint address, int length = 3)
       {
-         float[] floats = new float[length >= 0 ? length : 3];
-         for (int i = 0; i < length; i++) {
-            byte[] bytes = this.devkit.GetMemory(address + ((uint)i * 4), 4);
+         var floats = new float[length >= 0 ? length : 3];
+         for (var i = 0; i < length; i++) {
+            var bytes = this.devkit.GetMemory(address + ((uint)i * 4), 4);
             Array.Reverse(bytes, 0, bytes.Length);
             floats[i] = BitConverter.ToSingle(bytes, 0);
          }
@@ -76,49 +76,49 @@ namespace DevkitLibrary
 
       public double ReadDouble(uint address)
       {
-         byte[] bytes = this.devkit.GetMemory(address, 8);
+         var bytes = this.devkit.GetMemory(address, 8);
          Array.Reverse(bytes, 0, bytes.Length);
          return BitConverter.ToDouble(bytes, 0);
       }
 
       public short ReadInt16(uint address)
       {
-         byte[] bytes = this.devkit.GetMemory(address, 2);
+         var bytes = this.devkit.GetMemory(address, 2);
          Array.Reverse(bytes, 0, bytes.Length);
          return BitConverter.ToInt16(bytes, 0);
       }
 
       public int ReadInt32(uint address)
       {
-         byte[] bytes = this.devkit.GetMemory(address, 4);
+         var bytes = this.devkit.GetMemory(address, 4);
          Array.Reverse(bytes, 0, bytes.Length);
          return BitConverter.ToInt32(bytes, 0);
       }
 
       public long ReadInt64(uint address)
       {
-         byte[] bytes = this.devkit.GetMemory(address, 8);
+         var bytes = this.devkit.GetMemory(address, 8);
          Array.Reverse(bytes, 0, bytes.Length);
          return BitConverter.ToInt64(bytes, 0);
       }
 
       public ushort ReadUInt16(uint address)
       {
-         byte[] bytes = this.devkit.GetMemory(address, 2);
+         var bytes = this.devkit.GetMemory(address, 2);
          Array.Reverse(bytes, 0, bytes.Length);
          return BitConverter.ToUInt16(bytes, 0);
       }
 
       public uint ReadUInt32(uint address)
       {
-         byte[] bytes = this.devkit.GetMemory(address, 4);
+         var bytes = this.devkit.GetMemory(address, 4);
          Array.Reverse(bytes, 0, bytes.Length);
          return BitConverter.ToUInt32(bytes, 0);
       }
 
       public ulong ReadUInt64(uint address)
       {
-         byte[] bytes = this.devkit.GetMemory(address, 8);
+         var bytes = this.devkit.GetMemory(address, 8);
          Array.Reverse(bytes, 0, bytes.Length);
          return BitConverter.ToUInt64(bytes, 0);
       }
@@ -127,10 +127,10 @@ namespace DevkitLibrary
       {
          uint index = 0;
          uint blocksize = 40;
-         string text = "";
+         var text = "";
 
          while (!text.Contains('\0')) {
-            byte[] bytes = this.devkit.GetMemory(address + (uint)index, blocksize);
+            var bytes = this.devkit.GetMemory(address + (uint)index, blocksize);
             text += Encoding.UTF8.GetString(bytes);
             index += blocksize;
          }
@@ -140,22 +140,22 @@ namespace DevkitLibrary
 
       public string ReadString(uint address, int length)
       {
-         byte[] bytes = this.devkit.GetMemory(address, (uint)length);
+         var bytes = this.devkit.GetMemory(address, (uint)length);
          Array.Reverse(bytes, 0, bytes.Length);
-         string text = Encoding.UTF8.GetString(bytes);
+         var text = Encoding.UTF8.GetString(bytes);
          return text.Substring(0, text.IndexOf("\0"));
       }
 
       public string[] ReadStrings(uint address, int length)
       {
-         byte[] bytes = this.devkit.GetMemory(address, (uint)length);
-         string text = Encoding.UTF8.GetString(bytes);
+         var bytes = this.devkit.GetMemory(address, (uint)length);
+         var text = Encoding.UTF8.GetString(bytes);
          return text.Split(new char[1]);
       }
 
       public void WriteString(uint address, string value)
       {
-         byte[] bytes = Encoding.UTF8.GetBytes(value);
+         var bytes = Encoding.UTF8.GetBytes(value);
          Array.Resize(ref bytes, bytes.Length + 1);
          this.devkit.SetMemory(address, bytes);
       }
@@ -196,7 +196,7 @@ namespace DevkitLibrary
 
       public void WriteDouble(uint address, double value)
       {
-         byte[] bytes = new byte[8];
+         var bytes = new byte[8];
          BitConverter.GetBytes(value).CopyTo(bytes, 0);
          Array.Reverse(bytes, 0, bytes.Length);
          this.devkit.SetMemory(address, bytes);
@@ -204,7 +204,7 @@ namespace DevkitLibrary
 
       public void WriteFloat(uint address, float value)
       {
-         byte[] bytes = new byte[4];
+         var bytes = new byte[4];
          BitConverter.GetBytes(value).CopyTo(bytes, 0);
          Array.Reverse(bytes, 0, bytes.Length);
          this.devkit.SetMemory(address, bytes);
@@ -212,9 +212,9 @@ namespace DevkitLibrary
 
       public void WriteFloats(uint address, float[] value)
       {
-         byte[] bytes = new byte[4];
+         var bytes = new byte[4];
 
-         for (int i = 0; i < value.Length; i++) {
+         for (var i = 0; i < value.Length; i++) {
             BitConverter.GetBytes(value[i]).CopyTo(bytes, 0);
             Array.Reverse(bytes, 0, bytes.Length);
             this.devkit.SetMemory(address + (uint)i * 4, bytes);
@@ -228,7 +228,7 @@ namespace DevkitLibrary
 
       public void WriteInt16(uint address, short value)
       {
-         byte[] bytes = new byte[2];
+         var bytes = new byte[2];
          BitConverter.GetBytes(value).CopyTo(bytes, 0);
          Array.Reverse(bytes, 0, bytes.Length);
          this.devkit.SetMemory(address, bytes);
@@ -236,7 +236,7 @@ namespace DevkitLibrary
 
       public void WriteInt32(uint address, int value)
       {
-         byte[] bytes = new byte[4];
+         var bytes = new byte[4];
          BitConverter.GetBytes(value).CopyTo(bytes, 0);
          Array.Reverse(bytes, 0, bytes.Length);
          this.devkit.SetMemory(address, bytes);
@@ -244,7 +244,7 @@ namespace DevkitLibrary
 
       public void WriteInt64(uint address, long value)
       {
-         byte[] bytes = new byte[8];
+         var bytes = new byte[8];
          BitConverter.GetBytes(value).CopyTo(bytes, 0);
          Array.Reverse(bytes, 0, bytes.Length);
          this.devkit.SetMemory(address, bytes);
@@ -252,7 +252,7 @@ namespace DevkitLibrary
 
       public void WriteUInt16(uint address, ushort value)
       {
-         byte[] bytes = new byte[2];
+         var bytes = new byte[2];
          BitConverter.GetBytes(value).CopyTo(bytes, 0);
          Array.Reverse(bytes, 0, bytes.Length);
          this.devkit.SetMemory(address, bytes);
@@ -260,7 +260,7 @@ namespace DevkitLibrary
 
       public void WriteUInt32(uint address, uint value)
       {
-         byte[] bytes = new byte[4];
+         var bytes = new byte[4];
          BitConverter.GetBytes(value).CopyTo(bytes, 0);
          Array.Reverse(bytes, 0, bytes.Length);
          this.devkit.SetMemory(address, bytes);
@@ -268,7 +268,7 @@ namespace DevkitLibrary
 
       public void WriteUInt64(uint address, ulong value)
       {
-         byte[] bytes = new byte[8];
+         var bytes = new byte[8];
          BitConverter.GetBytes(value).CopyTo(bytes, 0);
          Array.Reverse(bytes, 0, bytes.Length);
          this.devkit.SetMemory(address, bytes);

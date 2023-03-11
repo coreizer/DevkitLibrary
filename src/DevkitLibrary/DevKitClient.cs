@@ -31,26 +31,11 @@ namespace DevkitLibrary
       public IDevkit Devkit;
       public DevkitType Type;
 
-      public PS3 PS3
-      {
-         get {
-            return (PS3)this.Devkit;
-         }
-      }
+      public PS3 PS3 => (PS3)this.Devkit;
 
-      public Xbox360 Xbox360
-      {
-         get {
-            return (Xbox360)this.Devkit;
-         }
-      }
+      public Xbox360 Xbox360 => (Xbox360)this.Devkit;
 
-      public Extensions Extensions
-      {
-         get {
-            return new Extensions(this.Devkit);
-         }
-      }
+      public Extensions Extensions => new Extensions(this.Devkit);
 
       public void SetTarget(DevkitType type, int targetIndex)
       {

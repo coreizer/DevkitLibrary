@@ -52,7 +52,7 @@ namespace DevkitLibrary.Devkits
               ConnectionStatus.Connected : ConnectionStatus.Unavailable;
          }
          else {
-            Guid clsid = new Guid(GUID);
+            var clsid = new Guid(GUID);
             Params.XboxManager = (XboxManager)Activator.CreateInstance(Type.GetTypeFromCLSID(clsid));
             Params.XboxConsole = Params.XboxManager.OpenConsole(Params.XboxManager.DefaultConsole);
 
@@ -107,8 +107,8 @@ namespace DevkitLibrary.Devkits
       {
          if (this.ConnectionStatus != ConnectionStatus.Connected) return new byte[0];
 
-         byte[] bytes = new byte[length];
-         Params.XboxConsole.DebugTarget.GetMemory(address, length, bytes, out uint bytesRead);
+         var bytes = new byte[length];
+         Params.XboxConsole.DebugTarget.GetMemory(address, length, bytes, out var bytesRead);
          return bytes;
       }
 
@@ -121,7 +121,7 @@ namespace DevkitLibrary.Devkits
       {
          if (this.ConnectionStatus != ConnectionStatus.Connected) return false;
 
-         Params.XboxConsole.DebugTarget.SetMemory(address, (uint)bytes.Length, bytes, out uint bytesWritten);
+         Params.XboxConsole.DebugTarget.SetMemory(address, (uint)bytes.Length, bytes, out var bytesWritten);
          return true;
       }
 

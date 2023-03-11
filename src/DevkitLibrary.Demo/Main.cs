@@ -28,7 +28,7 @@ namespace DevkitLibrary.Demo
 
    public partial class Main : DarkForm
    {
-      private DevKitClient client = new DevKitClient();
+      private readonly DevKitClient client = new DevKitClient();
 
       public Main()
       {
@@ -58,7 +58,7 @@ namespace DevkitLibrary.Demo
          this.darkComboBoxDevkit.Enabled = false;
 
          try {
-            ConnectionStatus status = await this.client.ConnectTargetAsync();
+            var status = await this.client.ConnectTargetAsync();
 
             switch (status) {
                case ConnectionStatus.Connected:
@@ -90,7 +90,7 @@ namespace DevkitLibrary.Demo
       {
          try {
             this.darkButtonAttach.Enabled = false;
-            bool successfully = await this.client.AttachProcessAsync();
+            var successfully = await this.client.AttachProcessAsync();
             if (successfully) {
                DarkMessageBox.ShowInformation("Current game process is attached successfully !", Application.ProductName, DarkDialogButton.Ok);
             }

@@ -48,7 +48,7 @@ namespace DevkitLibrary.Devkits
 
       public ConnectionStatus Connect()
       {
-         PS3TMAPI.SNRESULT result = PS3TMAPI.InitTargetComms();
+         var result = PS3TMAPI.InitTargetComms();
          if (PS3TMAPI.FAILED(result)) {
             throw new DevkitNotFoundException();
          }
@@ -63,7 +63,7 @@ namespace DevkitLibrary.Devkits
 
       public async Task<ConnectionStatus> ConnectAsync()
       {
-         PS3TMAPI.SNRESULT result = PS3TMAPI.InitTargetComms();
+         var result = PS3TMAPI.InitTargetComms();
          if (PS3TMAPI.SUCCEEDED(result)) {
             return await Task.Run(() => this.Connect()).ConfigureAwait(false);
          }
@@ -91,8 +91,8 @@ namespace DevkitLibrary.Devkits
             return ConnectionStatus.Unavailable;
          }
 
-         PS3TMAPI.ConnectStatus status = PS3TMAPI.ConnectStatus.Unavailable;
-         PS3TMAPI.SNRESULT result = PS3TMAPI.GetConnectStatus(this.TargetIndex, out status, out Params.usage);
+         var status = PS3TMAPI.ConnectStatus.Unavailable;
+         var result = PS3TMAPI.GetConnectStatus(this.TargetIndex, out status, out Params.usage);
 
          return (PS3TMAPI.SUCCEEDED(result)) ? (ConnectionStatus)status : ConnectionStatus.Unavailable;
       }
@@ -108,8 +108,8 @@ namespace DevkitLibrary.Devkits
             return new byte[1] { 0x00 };
          }
 
-         byte[] bytes = new byte[length];
-         PS3TMAPI.SNRESULT result = PS3TMAPI.ProcessGetMemory(this.TargetIndex, UNIT, Params.processID, 0, address, ref bytes);
+         var bytes = new byte[length];
+         var result = PS3TMAPI.ProcessGetMemory(this.TargetIndex, UNIT, Params.processID, 0, address, ref bytes);
          return (PS3TMAPI.SUCCEEDED(result)) ? bytes : new byte[1] { 0x00 };
       }
 
@@ -124,8 +124,8 @@ namespace DevkitLibrary.Devkits
             return PowerState.Unknown;
          }
 
-         PS3TMAPI.PowerStatus status = PS3TMAPI.PowerStatus.Unknown;
-         PS3TMAPI.SNRESULT result = PS3TMAPI.GetPowerStatus(this.TargetIndex, out status);
+         var status = PS3TMAPI.PowerStatus.Unknown;
+         var result = PS3TMAPI.GetPowerStatus(this.TargetIndex, out status);
          return (PS3TMAPI.SUCCEEDED(result)) ?
             (PowerState)status :
             PowerState.Unknown;
@@ -142,7 +142,7 @@ namespace DevkitLibrary.Devkits
             return false;
          }
 
-         PS3TMAPI.SNRESULT result = PS3TMAPI.GetProcessList(this.TargetIndex, out Params.processIDs);
+         var result = PS3TMAPI.GetProcessList(this.TargetIndex, out Params.processIDs);
          if (PS3TMAPI.FAILED(result)) {
             throw new DevKitAttachProcessFailedException($"{Enum.GetName(typeof(PS3TMAPI.SNRESULT), result)}");
          }
@@ -160,8 +160,7 @@ namespace DevkitLibrary.Devkits
 
       public async Task<bool> AttachProcessAsync()
       {
-         return await Task.Run(() =>
-         {
+         return await Task.Run(() => {
             PS3TMAPI.InitTargetComms();
             return this.AttachProcess();
          }).ConfigureAwait(false); ;
@@ -187,7 +186,7 @@ namespace DevkitLibrary.Devkits
             return false;
          }
 
-         PS3TMAPI.SNRESULT result = PS3TMAPI.SNRESULT.SN_E_COMMS_ERR;
+         var result = PS3TMAPI.SNRESULT.SN_E_COMMS_ERR;
          switch (state) {
             case PowerState.Off:
                result = PS3TMAPI.PowerOff(this.TargetIndex, isForce);
