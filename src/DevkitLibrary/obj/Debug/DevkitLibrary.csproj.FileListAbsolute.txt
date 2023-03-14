@@ -10,13 +10,6 @@ D:\Workflow\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrar
 D:\Workflow\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\DevkitLibrary.dll
 D:\Workflow\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\DevkitLibrary.pdb
 D:\Workflow\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.CopyComplete
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.CoreCompileInputs.cache
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\DevkitLibrary.dll
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\DevkitLibrary.pdb
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.dll
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.pdb
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\ps3tmapi_net.dll
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.AssemblyReference.cache
 E:\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\DevkitLibrary.dll
 E:\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\DevkitLibrary.pdb
 E:\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\ps3tmapi_net.dll
@@ -25,4 +18,11 @@ E:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.
 E:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.CopyComplete
 E:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.dll
 E:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.pdb
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\DevkitLibrary.dll
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\DevkitLibrary.pdb
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\bin\Debug\ps3tmapi_net.dll
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.AssemblyReference.cache
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.CoreCompileInputs.cache
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.csproj.CopyComplete
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.dll
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary\obj\Debug\DevkitLibrary.pdb

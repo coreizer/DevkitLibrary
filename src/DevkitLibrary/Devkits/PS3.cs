@@ -110,7 +110,7 @@ namespace DevkitLibrary.Devkits
 
          var bytes = new byte[length];
          var result = PS3TMAPI.ProcessGetMemory(this.TargetIndex, UNIT, Params.processID, 0, address, ref bytes);
-         return (PS3TMAPI.SUCCEEDED(result)) ? bytes : new byte[1] { 0x00 };
+         return (PS3TMAPI.SUCCEEDED(result)) ? bytes : new byte[length];
       }
 
       public async Task<byte[]> GetMemoryAsync(uint address, uint length)
