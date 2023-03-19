@@ -27,9 +27,13 @@ namespace DevkitLibrary
 
    public class DevKitClient
    {
-      public int TargetIndex;
-      public IDevkit Devkit;
-      public DevkitType Type;
+      public int TargetIndex { get; set; }
+
+      public IDevkit Devkit { get; set; }
+
+      public DevkitType Type { get; set; }
+
+      public Endianness Endian { get => this.Devkit.Endian; set => this.Devkit.Endian = value; }
 
       public PS3 PS3 => (PS3)this.Devkit;
 
@@ -48,10 +52,10 @@ namespace DevkitLibrary
       {
          switch (type) {
             case DevkitType.PS3:
-               return new PS3(targetIndex);
+               return new PS3(targetIndex, Endianness.Little);
 
             case DevkitType.Xbox360:
-               return new Xbox360();
+               return new Xbox360(Endianness.Little);
          }
 
          return null;
@@ -84,7 +88,7 @@ namespace DevkitLibrary
 
       public async Task<ConnectionStatus> GetConnectionStatusAsync()
       {
-         return await this.Devkit.GetConnectionStatusAsync().ConfigureAwait(false);
+         return await this.Devkit.GetConnectionStatusAsync().ConfigureAwait(true);
       }
 
       public byte[] GetMemory(uint address, uint length)

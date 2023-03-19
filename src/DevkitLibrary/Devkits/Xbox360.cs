@@ -39,16 +39,24 @@ namespace DevkitLibrary.Devkits
       private const string NAME = "coreizer_xdevkit";
       private const string GUID = "A5EB45D8-F3B6-49B9-984A-0D313AB60342";
 
+      public Endianness Endian { get; set; } = Endianness.Little;
+
       public int TargetIndex => throw new NotImplementedException();
 
       public ConnectionStatus ConnectionStatus { get; private set; }
+
+      public Xbox360(Endianness endian = Endianness.Little)
+      {
+         this.Endian = endian;
+         this.ConnectionStatus = ConnectionStatus.Disconnected;
+      }
 
       public ConnectionStatus Connect()
       {
          this.ConnectionStatus = ConnectionStatus.Unavailable;
 
          if (Params.XboxManager != null) {
-            this.ConnectionStatus = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
+            this.ConnectionStatus = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Params.DebuggerName, out Params.UserName) ?
               ConnectionStatus.Connected : ConnectionStatus.Unavailable;
          }
          else {
@@ -56,9 +64,9 @@ namespace DevkitLibrary.Devkits
             Params.XboxManager = (XboxManager)Activator.CreateInstance(Type.GetTypeFromCLSID(clsid));
             Params.XboxConsole = Params.XboxManager.OpenConsole(Params.XboxManager.DefaultConsole);
 
-            if (Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName)) {
+            if (Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Params.DebuggerName, out Params.UserName)) {
                Params.XboxConsole.DebugTarget.ConnectAsDebugger(NAME, XboxDebugConnectFlags.Force);
-               this.ConnectionStatus = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
+               this.ConnectionStatus = Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Params.DebuggerName, out Params.UserName) ?
                  ConnectionStatus.Connected : ConnectionStatus.Unavailable;
             }
          }
@@ -68,7 +76,7 @@ namespace DevkitLibrary.Devkits
 
       public async Task<ConnectionStatus> ConnectAsync()
       {
-         return await Task.Run(() => this.Connect()).ConfigureAwait(false);
+         return await Task.Run(() => this.Connect()).ConfigureAwait(true);
       }
 
       public bool Disconnect()
@@ -87,14 +95,14 @@ namespace DevkitLibrary.Devkits
 
       public async Task<bool> DisconnectAsync()
       {
-         return await Task.Run(() => this.Disconnect());
+         return await Task.Run(() => this.Disconnect()).ConfigureAwait(true);
       }
 
       public ConnectionStatus GetConnectionStatus()
       {
          if (this.ConnectionStatus != ConnectionStatus.Connected) return ConnectionStatus.Unavailable;
 
-         return Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Xbox360.Params.DebuggerName, out Xbox360.Params.UserName) ?
+         return Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Params.DebuggerName, out Params.UserName) ?
              ConnectionStatus.Connected : ConnectionStatus.Disconnected;
       }
 
@@ -105,11 +113,11 @@ namespace DevkitLibrary.Devkits
 
       public byte[] GetMemory(uint address, uint length)
       {
-         if (this.ConnectionStatus != ConnectionStatus.Connected) return new byte[0];
+         if (this.ConnectionStatus != ConnectionStatus.Connected) return new byte[length];
 
-         var bytes = new byte[length];
-         Params.XboxConsole.DebugTarget.GetMemory(address, length, bytes, out var bytesRead);
-         return bytes;
+         var buffer = new byte[length];
+         Params.XboxConsole.DebugTarget.GetMemory(address, length, buffer, out _);
+         return buffer;
       }
 
       public async Task<byte[]> GetMemoryAsync(uint address, uint length)
@@ -120,8 +128,7 @@ namespace DevkitLibrary.Devkits
       public bool SetMemory(uint address, byte[] bytes)
       {
          if (this.ConnectionStatus != ConnectionStatus.Connected) return false;
-
-         Params.XboxConsole.DebugTarget.SetMemory(address, (uint)bytes.Length, bytes, out var bytesWritten);
+         Params.XboxConsole.DebugTarget.SetMemory(address, (uint)bytes.Length, bytes, out _);
          return true;
       }
 

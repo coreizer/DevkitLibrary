@@ -28,6 +28,8 @@ namespace DevkitLibrary.Devkits
    {
       int TargetIndex { get; }
 
+      Endianness Endian { get; set; }
+
       ConnectionStatus ConnectionStatus { get; }
 
       ConnectionStatus Connect();

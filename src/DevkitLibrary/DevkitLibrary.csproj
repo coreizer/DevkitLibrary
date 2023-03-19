@@ -58,7 +58,7 @@
     <Compile Include="Enums\PowerState.cs" />
     <Compile Include="Devkits\PS3.cs" />
     <Compile Include="Enums\ConnectionStatus.cs" />
-    <Compile Include="Enums\Endian.cs" />
+    <Compile Include="Enums\Endianness.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="DevKitAttachProcessFailedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

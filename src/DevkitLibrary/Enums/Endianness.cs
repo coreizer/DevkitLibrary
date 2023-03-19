@@ -21,7 +21,7 @@
 
 namespace DevkitLibrary.Enums
 {
-   public enum Endian
+   public enum Endianness
    {
       Big,
       Little,

@@ -98,15 +98,20 @@ namespace DevkitLibrary.Demo
                DarkMessageBox.ShowWarning($"No game process found", Application.ProductName, DarkDialogButton.Ok);
             }
          }
+         catch (DevkitConnectFailedException ex) {
+            DarkMessageBox.ShowWarning($"Lost connection to target\r\n{ex.Message}", "Devkit", DarkDialogButton.Ok);
+            this.darkButtonConnect.Enabled = true;
+         }
          catch (DevKitAttachProcessFailedException ex) {
             DarkMessageBox.ShowWarning($"No game process found\r\n{ex.Message}", Application.ProductName, DarkDialogButton.Ok);
+            this.darkButtonAttach.Enabled = true;
          }
          catch (Exception ex) {
             DarkMessageBox.ShowError(ex.Message, $"Error - {Application.ProductName}", DarkDialogButton.Ok);
-         }
-
-         finally {
             this.darkButtonAttach.Enabled = true;
+         }
+         finally {
+            this.darkButtonConnect.Enabled = true;
          }
       }
    }
