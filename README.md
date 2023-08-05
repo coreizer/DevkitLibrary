@@ -17,7 +17,7 @@
 </div>
 
 <details>
-  <summary>一覧</summary>
+  <summary>Table of Contents</summary>
   <ol>
     <li><a href="#📦-usage">Usage</a></li>
     <li><a href="#🖼️-screenshot">Screenshot</a></li>
