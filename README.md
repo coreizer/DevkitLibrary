@@ -1,8 +1,11 @@
 # DevkitLibrary
+
 純正の開発キットを使用して、簡単に接続する機能を提供します。
 
-## Usage
+## 📦 Usage
+
 Connection example:
+
 ```
 // Xbox 360
 DevKitClient client = new DevKitClient();
@@ -19,15 +22,19 @@ if (status == ConnectionStatus.Connected) {
 }
 ```
 
-## Screenshot
+## 🖼️ Screenshot
+
 ![demo-image](./docs/demo-app.png)
 
-## Stay In Touch
- - [Website coreizer.dev](https://www.coreizer.dev)
- - [Twitter](https://www.twitter.com/coreizer)
+## 🌏 Stay In Touch
 
-## Author
+- [Website coreizer.dev](https://www.coreizer.dev)
+- [Twitter](https://www.twitter.com/coreizer)
+
+## 💻 Author
+
 coreizer
 
-## License
-[GPL v3.0 licensed.](LICENSE)
+## ⚠️ License
+
+This project is licensed under [GPL 3.0](https://opensource.org/license/lgpl-3-0/). See [License File](LICENSE) for details.
