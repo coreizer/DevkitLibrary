@@ -22,7 +22,7 @@
     <li><a href="#📦-usage">Usage</a></li>
     <li><a href="#🖼️-screenshot">Screenshot</a></li>
     <li><a href="#💻-author">Author</a></li>
-    <li><a href="🌏-stay-in-touch">Stay In Touch</a></li>
+    <li><a href="#🌏-stay-in-touch">Stay In Touch</a></li>
     <li><a href="#📝-license">License</a></li>
   </ol>
 </details>
