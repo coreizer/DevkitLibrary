@@ -10,7 +10,7 @@
 純正の開発キットを使用して、簡単に接続する機能を提供します。
 
   <p align="center">
-    <a href="">Bug Reports</a>
+    <a href="">Report Bug</a>
     ・
     <a href="">Request Feature</a>
   </p>
