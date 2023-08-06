@@ -21,9 +21,9 @@
   <ol>
     <li><a href="#📦-usage">Usage</a></li>
     <li><a href="#🖼️-screenshot">Screenshot</a></li>
-    <li><a href="#💻-author">Author</a></li>
+    <li><a href="#👷-author">Author</a></li>
     <li><a href="#🌏-stay-in-touch">Stay In Touch</a></li>
-    <li><a href="#📝-license">License</a></li>
+    <li><a href="#⚖️-license">License</a></li>
   </ol>
 </details>
 
@@ -56,10 +56,10 @@ if (status == ConnectionStatus.Connected) {
 - [Website coreizer.dev](https://www.coreizer.dev)
 - [Twitter](https://www.twitter.com/coreizer)
 
-## 💻 Author
+## 👷 Author
 
-coreizer
+- coreizer
 
-## 📝 License
+## ⚖️ License
 
 This project is licensed under [GPL 3.0](https://opensource.org/license/lgpl-3-0/). See [License File](LICENSE) for details.
