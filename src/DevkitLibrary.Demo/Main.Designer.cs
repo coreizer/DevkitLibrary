@@ -60,7 +60,7 @@ namespace DevkitLibrary.Demo
          // darkButtonConnect
          // 
          this.darkButtonConnect.Enabled = false;
-         this.darkButtonConnect.Location = new System.Drawing.Point(286, 152);
+         this.darkButtonConnect.Location = new System.Drawing.Point(200, 119);
          this.darkButtonConnect.Margin = new System.Windows.Forms.Padding(2);
          this.darkButtonConnect.Name = "darkButtonConnect";
          this.darkButtonConnect.Padding = new System.Windows.Forms.Padding(3);
@@ -76,7 +76,7 @@ namespace DevkitLibrary.Demo
          this.darkComboBoxDevkit.Items.AddRange(new object[] {
             "PS3",
             "Xbox360"});
-         this.darkComboBoxDevkit.Location = new System.Drawing.Point(286, 101);
+         this.darkComboBoxDevkit.Location = new System.Drawing.Point(200, 68);
          this.darkComboBoxDevkit.Margin = new System.Windows.Forms.Padding(2);
          this.darkComboBoxDevkit.Name = "darkComboBoxDevkit";
          this.darkComboBoxDevkit.Size = new System.Drawing.Size(273, 20);
@@ -86,7 +86,7 @@ namespace DevkitLibrary.Demo
          // darkButtonAttach
          // 
          this.darkButtonAttach.Enabled = false;
-         this.darkButtonAttach.Location = new System.Drawing.Point(425, 152);
+         this.darkButtonAttach.Location = new System.Drawing.Point(339, 119);
          this.darkButtonAttach.Margin = new System.Windows.Forms.Padding(2);
          this.darkButtonAttach.Name = "darkButtonAttach";
          this.darkButtonAttach.Padding = new System.Windows.Forms.Padding(3);
@@ -98,10 +98,10 @@ namespace DevkitLibrary.Demo
          // pictureBoxAppLogo
          // 
          this.pictureBoxAppLogo.Image = global::DevkitLibrary.Demo.Properties.Resources.app_hero_img_245x280;
-         this.pictureBoxAppLogo.Location = new System.Drawing.Point(-2, 0);
+         this.pictureBoxAppLogo.Location = new System.Drawing.Point(0, -2);
          this.pictureBoxAppLogo.Name = "pictureBoxAppLogo";
-         this.pictureBoxAppLogo.Size = new System.Drawing.Size(245, 280);
-         this.pictureBoxAppLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+         this.pictureBoxAppLogo.Size = new System.Drawing.Size(176, 200);
+         this.pictureBoxAppLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
          this.pictureBoxAppLogo.TabIndex = 9;
          this.pictureBoxAppLogo.TabStop = false;
          // 
@@ -109,7 +109,7 @@ namespace DevkitLibrary.Demo
          // 
          this.darkLabel1.AutoSize = true;
          this.darkLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-         this.darkLabel1.Location = new System.Drawing.Point(284, 78);
+         this.darkLabel1.Location = new System.Drawing.Point(198, 45);
          this.darkLabel1.Name = "darkLabel1";
          this.darkLabel1.Size = new System.Drawing.Size(61, 12);
          this.darkLabel1.TabIndex = 10;
@@ -120,7 +120,7 @@ namespace DevkitLibrary.Demo
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-         this.ClientSize = new System.Drawing.Size(600, 281);
+         this.ClientSize = new System.Drawing.Size(495, 196);
          this.Controls.Add(this.darkLabel1);
          this.Controls.Add(this.darkComboBoxDevkit);
          this.Controls.Add(this.darkButtonAttach);

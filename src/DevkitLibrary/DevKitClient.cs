@@ -19,12 +19,12 @@
 
 #endregion
 
+using System.Threading.Tasks;
+using DevkitLibrary.Devkits;
+using DevkitLibrary.Enums;
+
 namespace DevkitLibrary
 {
-   using System.Threading.Tasks;
-   using DevkitLibrary.Devkits;
-   using DevkitLibrary.Enums;
-
    public class DevKitClient
    {
       public int TargetIndex { get; set; }
@@ -41,15 +41,13 @@ namespace DevkitLibrary
 
       public Extensions Extensions => new Extensions(this.Devkit);
 
-      public void SetTarget(DevkitType type, int targetIndex)
-      {
+      public void SetTarget(DevkitType type, int targetIndex) {
          this.Type = type;
          this.TargetIndex = targetIndex;
          this.Devkit = CreateDevkit(type, targetIndex);
       }
 
-      internal static IDevkit CreateDevkit(DevkitType type, int targetIndex)
-      {
+      internal static IDevkit CreateDevkit(DevkitType type, int targetIndex) {
          switch (type) {
             case DevkitType.PS3:
                return new PS3(targetIndex, Endianness.Little);
@@ -61,84 +59,36 @@ namespace DevkitLibrary
          return null;
       }
 
-      public ConnectionStatus ConnectTarget()
-      {
-         return this.Devkit.Connect();
-      }
+      public ConnectionStatus ConnectTarget() => this.Devkit.Connect();
 
-      public async Task<ConnectionStatus> ConnectTargetAsync()
-      {
-         return await this.Devkit.ConnectAsync();
-      }
+      public async Task<ConnectionStatus> ConnectTargetAsync() => await this.Devkit.ConnectAsync();
 
-      public bool DisconnectTarget()
-      {
-         return this.Devkit.Disconnect();
-      }
+      public bool DisconnectTarget() => this.Devkit.Disconnect();
 
-      public async Task<bool> DisconnectTargetAsync()
-      {
-         return await this.Devkit.DisconnectAsync();
-      }
+      public async Task<bool> DisconnectTargetAsync() => await this.Devkit.DisconnectAsync();
 
-      public ConnectionStatus GetConnectionStatus()
-      {
-         return this.Devkit.GetConnectionStatus();
-      }
+      public ConnectionStatus GetConnectionStatus() => this.Devkit.GetConnectionStatus();
 
-      public async Task<ConnectionStatus> GetConnectionStatusAsync()
-      {
-         return await this.Devkit.GetConnectionStatusAsync().ConfigureAwait(true);
-      }
+      public async Task<ConnectionStatus> GetConnectionStatusAsync() => await this.Devkit.GetConnectionStatusAsync().ConfigureAwait(true);
 
-      public byte[] GetMemory(uint address, uint length)
-      {
-         return this.Devkit.GetMemory(address, length);
-      }
+      public byte[] GetMemory(uint address, uint length) => this.Devkit.GetMemory(address, length);
 
-      public async Task<byte[]> GetMemoryAsync(uint address, uint length)
-      {
-         return await this.Devkit.GetMemoryAsync(address, length);
-      }
+      public async Task<byte[]> GetMemoryAsync(uint address, uint length) => await this.Devkit.GetMemoryAsync(address, length);
 
-      public PowerState GetPowerState()
-      {
-         return this.Devkit.GetPowerState();
-      }
+      public PowerState GetPowerState() => this.Devkit.GetPowerState();
 
-      public async Task<PowerState> GetPowerStateAsync()
-      {
-         return await this.Devkit.GetPowerStateAsync();
-      }
+      public async Task<PowerState> GetPowerStateAsync() => await this.Devkit.GetPowerStateAsync();
 
-      public bool ProcessAttach()
-      {
-         return this.Devkit.AttachProcess();
-      }
+      public bool ProcessAttach() => this.Devkit.AttachProcess();
 
-      public async Task<bool> AttachProcessAsync()
-      {
-         return await this.Devkit.AttachProcessAsync();
-      }
+      public async Task<bool> AttachProcessAsync() => await this.Devkit.AttachProcessAsync();
 
-      public bool SetMemory(uint address, byte[] bytes)
-      {
-         return this.Devkit.SetMemory(address, bytes);
-      }
+      public bool SetMemory(uint address, byte[] bytes) => this.Devkit.SetMemory(address, bytes);
 
-      public async Task<bool> SetMemoryAsync(uint address, byte[] bytes)
-      {
-         return await this.Devkit.SetMemoryAsync(address, bytes);
-      }
+      public async Task<bool> SetMemoryAsync(uint address, byte[] bytes) => await this.Devkit.SetMemoryAsync(address, bytes);
 
-      public bool SetPowerState(PowerState state, bool isForce = false)
-      {
-         return this.Devkit.SetPowerState(state, isForce);
-      }
+      public bool SetPowerState(PowerState state, bool isForce = false) => this.Devkit.SetPowerState(state, isForce);
 
-      public async Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false)
-      {
-         return await this.Devkit.SetPowerStateAsync(state, isForce);
-      }
+      public async Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false) => await this.Devkit.SetPowerStateAsync(state, isForce);
    }
 }

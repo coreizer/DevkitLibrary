@@ -19,11 +19,11 @@
 
 #endregion
 
+using System.Threading.Tasks;
+using DevkitLibrary.Enums;
+
 namespace DevkitLibrary.Devkits
 {
-   using System.Threading.Tasks;
-   using DevkitLibrary.Enums;
-
    public interface IDevkit
    {
       int TargetIndex { get; }

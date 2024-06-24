@@ -19,25 +19,21 @@
 
 #endregion
 
+using System;
+
 namespace DevkitLibrary
 {
-   using System;
-
    public class DevkitConnectFailedException : Exception
    {
-      public DevkitConnectFailedException()
-      {
+      public DevkitConnectFailedException() {
       }
 
       public DevkitConnectFailedException(string message)
-         : base(message)
-      {
-
+         : base(message) {
       }
 
       public DevkitConnectFailedException(string message, Exception inner)
-         : base(message, inner)
-      {
+         : base(message, inner) {
       }
    }
 }

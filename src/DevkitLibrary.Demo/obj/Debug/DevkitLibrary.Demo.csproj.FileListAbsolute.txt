@@ -63,11 +63,10 @@ D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\System.dll
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\PS3TMAPI_NET.dll
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\bin\Debug\DevkitLibrary.pdb
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.AssemblyReference.cache
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.SuggestedBindingRedirects.cache
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.Main.resources
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.Properties.Resources.resources
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.GenerateResource.cache
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.CoreCompileInputs.cache
-D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.csproj.CopyComplete
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.exe
 D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLibrary.Demo.pdb
+D:\Visual Studio\DevkitLibrary\src\DevkitLibrary.Demo\obj\Debug\DevkitLi.D7698A23.Up2Date

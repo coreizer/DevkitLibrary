@@ -19,24 +19,18 @@
 
 #endregion
 
+using System;
+
 namespace DevkitLibrary
 {
-   using System;
-
    public class DevkitNotFoundException : Exception
    {
-      public DevkitNotFoundException()
-      {
-      }
+      public DevkitNotFoundException() { }
 
       public DevkitNotFoundException(string message)
-          : base(message)
-      {
-      }
+        : base(message) { }
 
       public DevkitNotFoundException(string message, Exception inner)
-          : base(message, inner)
-      {
-      }
+        : base(message, inner) { }
    }
 }

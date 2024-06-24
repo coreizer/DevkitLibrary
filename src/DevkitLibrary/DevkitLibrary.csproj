@@ -46,7 +46,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="xdevkit">
-      <HintPath>..\..\..\..\Libraryfiles\xdevkit.dll</HintPath>
+      <HintPath>C:\Users\corei\OneDrive\ドキュメント\References\xdevkit.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
   </ItemGroup>

@@ -19,24 +19,22 @@
 
 #endregion
 
+using System;
+using System.Windows.Forms;
+using DarkUI.Forms;
+using DevkitLibrary.Enums;
+
 namespace DevkitLibrary.Demo
 {
-   using System;
-   using System.Windows.Forms;
-   using DarkUI.Forms;
-   using DevkitLibrary.Enums;
-
    public partial class Main : DarkForm
    {
       private readonly DevKitClient client = new DevKitClient();
 
-      public Main()
-      {
+      public Main() {
          this.InitializeComponent();
       }
 
-      private void darkComboBoxDevkit_SelectedIndexChanged(object sender, EventArgs e)
-      {
+      private void darkComboBoxDevkit_SelectedIndexChanged(object sender, EventArgs e) {
          switch ((sender as ComboBox).Text.ToUpper()) {
             case "PS3":
                this.darkButtonAttach.Text = "Process Attach";
@@ -52,8 +50,7 @@ namespace DevkitLibrary.Demo
          this.darkButtonConnect.Enabled = true;
       }
 
-      private async void darkButtonConnect_Click(object sender, EventArgs e)
-      {
+      private async void darkButtonConnect_Click(object sender, EventArgs e) {
          this.darkButtonConnect.Enabled = false;
          this.darkComboBoxDevkit.Enabled = false;
 
@@ -86,8 +83,7 @@ namespace DevkitLibrary.Demo
          }
       }
 
-      private async void darkButtonAttach_Click(object sender, EventArgs e)
-      {
+      private async void darkButtonAttach_Click(object sender, EventArgs e) {
          try {
             this.darkButtonAttach.Enabled = false;
             var successfully = await this.client.AttachProcessAsync();

@@ -19,10 +19,10 @@
 
 #endregion
 
+using System;
+
 namespace DevkitLibrary.Devkits
 {
-   using System;
-
    public class NotSupportedAttribute : Attribute
    {
    }

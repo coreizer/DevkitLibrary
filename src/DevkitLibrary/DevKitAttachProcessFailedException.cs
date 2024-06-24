@@ -19,24 +19,21 @@
 
 #endregion
 
+using System;
+
 namespace DevkitLibrary
 {
-   using System;
-
    public class DevKitAttachProcessFailedException : Exception
    {
-      public DevKitAttachProcessFailedException()
-      {
+      public DevKitAttachProcessFailedException() {
       }
 
       public DevKitAttachProcessFailedException(string message)
-          : base(message)
-      {
+        : base(message) {
       }
 
       public DevKitAttachProcessFailedException(string message, Exception inner)
-                  : base(message, inner)
-      {
+        : base(message, inner) {
       }
    }
 }

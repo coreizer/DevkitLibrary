@@ -19,13 +19,13 @@
 
 #endregion
 
+using System;
+using System.Threading.Tasks;
+using DevkitLibrary.Enums;
+using XDevkit;
+
 namespace DevkitLibrary.Devkits
 {
-   using System;
-   using System.Threading.Tasks;
-   using DevkitLibrary.Enums;
-   using XDevkit;
-
    public class Xbox360 : IDevkit
    {
       internal class Params
@@ -45,14 +45,12 @@ namespace DevkitLibrary.Devkits
 
       public ConnectionStatus ConnectionStatus { get; private set; }
 
-      public Xbox360(Endianness endian = Endianness.Little)
-      {
+      public Xbox360(Endianness endian = Endianness.Little) {
          this.Endian = endian;
          this.ConnectionStatus = ConnectionStatus.Disconnected;
       }
 
-      public ConnectionStatus Connect()
-      {
+      public ConnectionStatus Connect() {
          this.ConnectionStatus = ConnectionStatus.Unavailable;
 
          if (Params.XboxManager != null) {
@@ -74,13 +72,9 @@ namespace DevkitLibrary.Devkits
          return this.ConnectionStatus;
       }
 
-      public async Task<ConnectionStatus> ConnectAsync()
-      {
-         return await Task.Run(() => this.Connect()).ConfigureAwait(true);
-      }
+      public async Task<ConnectionStatus> ConnectAsync() => await Task.Run(() => this.Connect()).ConfigureAwait(true);
 
-      public bool Disconnect()
-      {
+      public bool Disconnect() {
          if (this.ConnectionStatus != ConnectionStatus.Connected) return false;
 
          try {
@@ -93,26 +87,18 @@ namespace DevkitLibrary.Devkits
          return true;
       }
 
-      public async Task<bool> DisconnectAsync()
-      {
-         return await Task.Run(() => this.Disconnect()).ConfigureAwait(true);
-      }
+      public async Task<bool> DisconnectAsync() => await Task.Run(() => this.Disconnect()).ConfigureAwait(true);
 
-      public ConnectionStatus GetConnectionStatus()
-      {
+      public ConnectionStatus GetConnectionStatus() {
          if (this.ConnectionStatus != ConnectionStatus.Connected) return ConnectionStatus.Unavailable;
 
          return Params.XboxConsole.DebugTarget.IsDebuggerConnected(out Params.DebuggerName, out Params.UserName) ?
              ConnectionStatus.Connected : ConnectionStatus.Disconnected;
       }
 
-      public async Task<ConnectionStatus> GetConnectionStatusAsync()
-      {
-         return await Task.Run(() => this.GetConnectionStatus());
-      }
+      public async Task<ConnectionStatus> GetConnectionStatusAsync() => await Task.Run(() => this.GetConnectionStatus());
 
-      public byte[] GetMemory(uint address, uint length)
-      {
+      public byte[] GetMemory(uint address, uint length) {
          if (this.ConnectionStatus != ConnectionStatus.Connected) return new byte[length];
 
          var buffer = new byte[length];
@@ -120,81 +106,56 @@ namespace DevkitLibrary.Devkits
          return buffer;
       }
 
-      public async Task<byte[]> GetMemoryAsync(uint address, uint length)
-      {
-         return await Task.Run(() => this.GetMemory(address, length));
-      }
+      public async Task<byte[]> GetMemoryAsync(uint address, uint length) => await Task.Run(() => this.GetMemory(address, length));
 
-      public bool SetMemory(uint address, byte[] bytes)
-      {
+      public bool SetMemory(uint address, byte[] bytes) {
          if (this.ConnectionStatus != ConnectionStatus.Connected) return false;
          Params.XboxConsole.DebugTarget.SetMemory(address, (uint)bytes.Length, bytes, out _);
          return true;
       }
 
-      public async Task<bool> SetMemoryAsync(uint address, byte[] bytes)
-      {
-         return await Task.Run(() => this.SetMemory(address, bytes));
-      }
+      public async Task<bool> SetMemoryAsync(uint address, byte[] bytes) => await Task.Run(() => this.SetMemory(address, bytes));
 
       /// <summary>
       /// Not Supported.
       /// </summary>
       /// <returns>NotImplementedException</returns>
       [NotSupported]
-      public PowerState GetPowerState()
-      {
-         throw new NotImplementedException();
-      }
+      public PowerState GetPowerState() => throw new NotImplementedException();
 
       /// <summary>
       /// Not Supported.
       /// </summary>
       /// <returns>NotImplementedException</returns>
       [NotSupported]
-      public Task<PowerState> GetPowerStateAsync()
-      {
-         throw new NotImplementedException();
-      }
+      public Task<PowerState> GetPowerStateAsync() => throw new NotImplementedException();
 
       /// <summary>
       /// Not Supported.
       /// </summary>
       /// <returns>NotImplementedException</returns>
       [NotSupported]
-      public bool AttachProcess()
-      {
-         throw new NotImplementedException();
-      }
+      public bool AttachProcess() => throw new NotImplementedException();
 
       /// <summary>
       /// Not Supported.
       /// </summary>
       /// <returns>NotImplementedException</returns>
       [NotSupported]
-      public Task<bool> AttachProcessAsync()
-      {
-         throw new NotImplementedException();
-      }
+      public Task<bool> AttachProcessAsync() => throw new NotImplementedException();
 
       /// <summary>
       /// Not Supported.
       /// </summary>
       /// <returns>NotImplementedException</returns>
       [NotSupported]
-      public bool SetPowerState(PowerState state, bool isForce = false)
-      {
-         throw new NotImplementedException();
-      }
+      public bool SetPowerState(PowerState state, bool isForce = false) => throw new NotImplementedException();
 
       /// <summary>
       /// Not Supported.
       /// </summary>
       /// <returns>NotImplementedException</returns>
       [NotSupported]
-      public Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false)
-      {
-         throw new NotImplementedException();
-      }
+      public Task<bool> SetPowerStateAsync(PowerState state, bool isForce = false) => throw new NotImplementedException();
    }
 }
