@@ -52,15 +52,13 @@ namespace DevkitLibrary.Demo
          this.darkButtonConnect = new DarkUI.Controls.DarkButton();
          this.darkComboBoxDevkit = new DarkUI.Controls.DarkComboBox();
          this.darkButtonAttach = new DarkUI.Controls.DarkButton();
-         this.pictureBoxAppLogo = new System.Windows.Forms.PictureBox();
          this.darkLabel1 = new DarkUI.Controls.DarkLabel();
-         ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAppLogo)).BeginInit();
          this.SuspendLayout();
          // 
          // darkButtonConnect
          // 
          this.darkButtonConnect.Enabled = false;
-         this.darkButtonConnect.Location = new System.Drawing.Point(200, 119);
+         this.darkButtonConnect.Location = new System.Drawing.Point(14, 94);
          this.darkButtonConnect.Margin = new System.Windows.Forms.Padding(2);
          this.darkButtonConnect.Name = "darkButtonConnect";
          this.darkButtonConnect.Padding = new System.Windows.Forms.Padding(3);
@@ -76,7 +74,7 @@ namespace DevkitLibrary.Demo
          this.darkComboBoxDevkit.Items.AddRange(new object[] {
             "PS3",
             "Xbox360"});
-         this.darkComboBoxDevkit.Location = new System.Drawing.Point(200, 68);
+         this.darkComboBoxDevkit.Location = new System.Drawing.Point(14, 43);
          this.darkComboBoxDevkit.Margin = new System.Windows.Forms.Padding(2);
          this.darkComboBoxDevkit.Name = "darkComboBoxDevkit";
          this.darkComboBoxDevkit.Size = new System.Drawing.Size(273, 20);
@@ -86,7 +84,7 @@ namespace DevkitLibrary.Demo
          // darkButtonAttach
          // 
          this.darkButtonAttach.Enabled = false;
-         this.darkButtonAttach.Location = new System.Drawing.Point(339, 119);
+         this.darkButtonAttach.Location = new System.Drawing.Point(153, 94);
          this.darkButtonAttach.Margin = new System.Windows.Forms.Padding(2);
          this.darkButtonAttach.Name = "darkButtonAttach";
          this.darkButtonAttach.Padding = new System.Windows.Forms.Padding(3);
@@ -95,21 +93,11 @@ namespace DevkitLibrary.Demo
          this.darkButtonAttach.Text = "Process Attach";
          this.darkButtonAttach.Click += new System.EventHandler(this.darkButtonAttach_Click);
          // 
-         // pictureBoxAppLogo
-         // 
-         this.pictureBoxAppLogo.Image = global::DevkitLibrary.Demo.Properties.Resources.app_hero_img_245x280;
-         this.pictureBoxAppLogo.Location = new System.Drawing.Point(0, -2);
-         this.pictureBoxAppLogo.Name = "pictureBoxAppLogo";
-         this.pictureBoxAppLogo.Size = new System.Drawing.Size(176, 200);
-         this.pictureBoxAppLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-         this.pictureBoxAppLogo.TabIndex = 9;
-         this.pictureBoxAppLogo.TabStop = false;
-         // 
          // darkLabel1
          // 
          this.darkLabel1.AutoSize = true;
          this.darkLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-         this.darkLabel1.Location = new System.Drawing.Point(198, 45);
+         this.darkLabel1.Location = new System.Drawing.Point(12, 20);
          this.darkLabel1.Name = "darkLabel1";
          this.darkLabel1.Size = new System.Drawing.Size(61, 12);
          this.darkLabel1.TabIndex = 10;
@@ -120,18 +108,16 @@ namespace DevkitLibrary.Demo
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-         this.ClientSize = new System.Drawing.Size(495, 196);
+         this.ClientSize = new System.Drawing.Size(303, 148);
          this.Controls.Add(this.darkLabel1);
          this.Controls.Add(this.darkComboBoxDevkit);
          this.Controls.Add(this.darkButtonAttach);
-         this.Controls.Add(this.pictureBoxAppLogo);
          this.Controls.Add(this.darkButtonConnect);
          this.Margin = new System.Windows.Forms.Padding(2);
          this.MaximizeBox = false;
          this.Name = "Main";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          this.Text = "DevkitLib by coreizer v0.2.8";
-         ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAppLogo)).EndInit();
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -141,7 +127,6 @@ namespace DevkitLibrary.Demo
     private DarkUI.Controls.DarkButton darkButtonConnect;
     private DarkUI.Controls.DarkComboBox darkComboBoxDevkit;
     private DarkUI.Controls.DarkButton darkButtonAttach;
-      private System.Windows.Forms.PictureBox pictureBoxAppLogo;
       private DarkUI.Controls.DarkLabel darkLabel1;
    }
 }

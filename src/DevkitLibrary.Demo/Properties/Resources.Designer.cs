@@ -59,15 +59,5 @@ namespace DevkitLibrary.Demo.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap app_hero_img_245x280 {
-            get {
-                object obj = ResourceManager.GetObject("app_hero_img_245x280", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }
